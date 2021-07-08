@@ -28,16 +28,17 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 
 **Required Must-have Stories**
 
-* Authentication: Users are able to sign in with an account
-* Group creation: Users can create or join an existing private roommate group
-* File sharing functionality: Users can view and edit pages that all members of a group see, especially a grocery list 
-* Users can create a shared chores table 
+[ ] Authentication: Users are able to sign in with an account
+[ ] Group creation: Users can create or join an existing private roommate group
+[ ] File sharing functionality: Users can view and edit pages that all members of a group see, especially a grocery list 
+[ ] Users can create a shared chores table 
 
 **Optional Nice-to-have Stories**
 
-* Send notifications to remind users about chores
-* Google Calendar integration to create events
-* Splitwise integration to track expenses
+[ ] Send notifications to remind users about chores
+[ ] Google Calendar integration to create events
+[ ] Splitwise integration to track expenses
+[ ] Cusstomizable home page that can add widgets (Fragments) for chores or calendar
 
 ### 2. Screen Archetypes
 
