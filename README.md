@@ -161,5 +161,35 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 
 ### Networking
 - [Add list of network requests by screen ]
+Profile (Personal Groups) Screen
+- (Read/GET) Query all groups where user is a member OR Query list of groups from user 
+
+Create group modal
+- (Create/POST) Create a new group
+
+Roommate Hub Homepage
+- (Read/GET) Query all important info from group (ie. welcome message, wifi, etc.)
+- (Read/GET) Query a list of today’s chores
+- (Read/GET) Stretch goal: query all notes others have left on the “fridge” 
+
+Chores page
+- (Read/GET) Query all chores for this day of the week
+- (Update/PUT) Mark a chore as complete
+- (Create/POST) Create a new chore
+- (Delete) Delete a chore
+
+Notes page
+- (Read/GET) Query all Lists
+- (Create/POST) Create a new list
+- (Delete) Delete a list
+
+Notes Detail Page
+- (Read/GET) Query all ListItems within a list
+- (Create/POST) Create a new listitem
+- (Update/PUT) Mark an item as checked
+- (Update/PUT) Edit an item text
+- (Delete) Delete an item
+
+
 - [Create basic snippets for each Parse network request]
 - [OPTIONAL: List endpoints if using existing API such as Yelp]
