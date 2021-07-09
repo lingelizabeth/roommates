@@ -99,8 +99,7 @@ An app that centralizes all the logistical aspects of living with roommates, inc
        * "New Note" button or "Edit" leads to an edit view
 
 ## Wireframes
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://user-images.githubusercontent.com/31828974/125111420-e1faa600-e0b3-11eb-9f77-47afcaa3af59.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
 
