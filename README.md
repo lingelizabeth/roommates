@@ -160,7 +160,7 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 | currentlyEditing |           | pointer to User | pointer to a user who is currently editing this item, or null  |
 
 ### Networking
-- [Add list of network requests by screen ]
+[Add list of network requests by screen ]
 Profile (Personal Groups) Screen
 - (Read/GET) Query all groups where user is a member OR Query list of groups from user 
 
@@ -191,5 +191,5 @@ Notes Detail Page
 - (Delete) Delete an item
 
 
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+[Create basic snippets for each Parse network request]
+[OPTIONAL: List endpoints if using existing API such as Yelp]
