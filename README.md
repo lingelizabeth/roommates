@@ -109,7 +109,57 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 ## Schema 
 [This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+**Model: User**
+| Property   | Required? | Type   | Description                                     |
+|------------|-----------|--------|-------------------------------------------------|
+| username   | *         | String | user created string id                          |
+| email      | *         | String | email address                                   |
+| password   | *         | String | user password                                   |
+| first name | *         | String | user first name                                 |
+| last name  | *         | String | user last name                                  |
+| photo      | *         | File   | profile photo                                   |
+| groups     | *         | Array  | array of pointers to Group objects              |
+| friends    |           | Array  | stretch goal: array of pointers to User objects |
+
+**Model: Group**
+| Property    | Required? | Type     | Description                                                                                    |
+|-------------|-----------|----------|------------------------------------------------------------------------------------------------|
+| title       | *         | String   | Group name                                                                                     |
+| description |           | String   | optional description of group                                                                  |
+| members     | *         | Array    | array of pointers to User objects in this group                                                |
+| createdAt   | *         | datetime | date created                                                                                   |
+| updatedAt   | *         | datetime | last time this was updated, stretch goal: take into account internal activity like notes edits |
+| photo       |           | File     | group photo for banner                                                                         |
+| address     |           | String   | address of apartment or house                                                                  |
+
+**Model: Chore**
+| Property  | Required? | Type             | Description                                                     |
+|-----------|-----------|------------------|-----------------------------------------------------------------|
+| group     | *         | pointer to Group | group that this chore belongs to                                |
+| dayOfWeek | *         | String           | what day of the week this chore should be done                  |
+| Title     | *         | String           | name of chore (ie. dishes, taking out trash, etc.)              |
+| user      | *         | pointer to User  | person assigned to this chore                                   |
+| checked   |           | boolean          | whether or not this chore has been done, should reset every day |
+| isDaily   |           | boolean          | stretch goal: allow for daily and weekly chores                 |
+
+**Model: List**
+| Property  | Required? | Type     | Description                            |
+|-----------|-----------|----------|----------------------------------------|
+| Title     | *         | String   | title of list (ie. grocery list, etc.) |
+| createdAt | *         | datetime | date created                           |
+| updatedAt | *         | datetime | last time the list was updated         |
+| items     | *         | Array    | array of pointers to listitems         |
+
+**Model: ListItem**
+| Property         | Required? | Type            | Description                                                    |
+|------------------|-----------|-----------------|----------------------------------------------------------------|
+| text             | *         | String          | list item text                                                 |
+| isCheckbox       |           | boolean         | stretch goal: support checkboxes and bullet points             |
+| isChecked        |           | boolean         | if is checkbox, this indicates whether the box is checked      |
+| createdAt        | *         | datetime        | date created                                                   |
+| updatedAt        | *         | datetime        | last time the list was updated                                 |
+| currentlyEditing |           | pointer to User | pointer to a user who is currently editing this item, or null  |
+
 ### Networking
 - [Add list of network requests by screen ]
 - [Create basic snippets for each Parse network request]
