@@ -130,6 +130,7 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 | updatedAt   | *         | datetime | last time this was updated, stretch goal: take into account internal activity like notes edits |
 | photo       |           | File     | group photo for banner                                                                         |
 | address     |           | String   | address of apartment or house                                                                  |
+| metadata    |           | JSON     | includes fields like welcome message, wifi name, wifi password, rent due date, how to pay rent |
 
 **Model: Chore**
 | Property  | Required? | Type             | Description                                                     |
