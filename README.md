@@ -32,13 +32,13 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 * [ ] Group creation: Users can create or join an existing private roommate group
 * [ ] File sharing functionality: Users can view and edit pages that all members of a group see, especially a grocery list 
 * [ ] Users can create a shared chores table 
+* [ ] Google Calendar integration to create events
 
 **Optional Nice-to-have Stories**
 
-* [ ] Send notifications to remind users about chores
-* [ ] Google Calendar integration to create events
-* [ ] Splitwise integration to track expenses
+* [ ] Send notifications to remind users about chores and events
 * [ ] Customizable home page that can add widgets (Fragments) for chores or calendar
+* [ ] Chores are sortable by day, person, or chore type
 
 ### 2. Screen Archetypes
 
@@ -58,8 +58,6 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 * Calendar page
     * Add house events
     * Send notifications for events
-* Finances page
-    * Record finances for the house
 * Group page 
     * Shows where each person is (home or not home)
 
@@ -80,7 +78,7 @@ An app that centralizes all the logistical aspects of living with roommates, inc
    * Leads to join group 
 * Profile
    * Recycler View representing each roommate group
-       * Clicking each one leads to roommatet home which has the above 5 tabs
+       * Clicking each one leads to roommate home which has the above 5 tabs
 * Roommate Home
    * Navigate to using bottom tabs
 * Calendar
