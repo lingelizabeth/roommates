@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <EditText
+        android:id="@+id/etMembers"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/etDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textSize="16dp"></EditText>
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hint="Username"
+        android:padding="10dp"
+        android:shadowColor="#000000"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:textSize="16dp"></EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etMembers"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:text="Log In"
+        android:backgroundTint="@color/bright_green"
+        android:textAllCaps="false"></Button>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="165dp"
+        android:layout_marginTop="50dp"
+        android:text="Roommate Hub"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="26dp"
+        android:text="Don't have an account?" />
+
+    <Button
+        android:id="@+id/btnGoToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnSubmit"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/textView2"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:minHeight="10dp"
+        android:padding="0dp"
+        android:text="Create account"
+        android:textAllCaps="false"
+        android:textColor="@color/bright_green" />
+
+</RelativeLayout>

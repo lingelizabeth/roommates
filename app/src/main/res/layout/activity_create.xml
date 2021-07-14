@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateActivity">
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hint="Group name"
+        android:padding="10dp"
+        android:shadowColor="#000000"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:textSize="16dp"></EditText>
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/etTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:hint="A short description"
+        android:padding="10dp"
+        android:shadowColor="#000000"
+        android:shadowDx="-1"
+        android:shadowDy="1"
+        android:textSize="16dp"></EditText>
+
+
+    <EditText
+        android:id="@+id/etMembers"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="false"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="6dp"
+        android:hint="(their username)"
+        android:padding="10dp"
+        android:textSize="16dp"></EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMembers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:backgroundTint="@color/bright_green"
+        android:text="Create group"
+        android:textAllCaps="false"></Button>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDescription"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="50dp"
+        android:text="Add group members" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignTop="@+id/etMembers"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/etMembers"
+        android:background="@drawable/ic_baseline_add_24"
+        android:drawablePadding="5dp"
+        android:minWidth="50dp" />
+
+    <TextView
+        android:id="@+id/tvMembers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etMembers"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="10dp"
+        tools:text="lizzy, rachel, emily" />
+
+</RelativeLayout>
