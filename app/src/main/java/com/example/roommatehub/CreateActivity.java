@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.roommatehub.models.Group;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;

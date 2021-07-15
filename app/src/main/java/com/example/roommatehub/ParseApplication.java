@@ -1,5 +1,8 @@
 package com.example.roommatehub;
 
+import com.example.roommatehub.models.Group;
+import com.example.roommatehub.models.ListItem;
+import com.example.roommatehub.models.Note;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
@@ -13,6 +16,8 @@ public class ParseApplication extends Application{
         super.onCreate();
 
         ParseObject.registerSubclass(Group.class);
+        ParseObject.registerSubclass(Note.class);
+        ParseObject.registerSubclass(ListItem.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("38JcH2O8dPOnItWDyvMBusAuI2bSvRGGrVoY2Edp")
                 .clientKey("OdRBiP4ZtYcwxUAXhRGTTMgome0qJSA69ToN4olB")

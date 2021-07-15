@@ -6,12 +6,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.MenuItem;
 
 import com.example.roommatehub.fragments.GroupProfileFragment;
 import com.example.roommatehub.fragments.HomeFragment;
 import com.example.roommatehub.fragments.NotesFragment;
+import com.example.roommatehub.models.Group;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.parceler.Parcels;
@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
                         fragment = HomeFragment.newInstance(group.getTitle(), group.getDescription());
                         break;
                     case R.id.action_notes:
-                        fragment = new NotesFragment();
+                        fragment = NotesFragment.newInstance(group);
                         break;
                     case R.id.action_group:
                         fragment = new GroupProfileFragment();

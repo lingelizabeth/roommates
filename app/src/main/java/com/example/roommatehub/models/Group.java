@@ -1,4 +1,4 @@
-package com.example.roommatehub;
+package com.example.roommatehub.models;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
