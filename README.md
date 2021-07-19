@@ -100,6 +100,7 @@ An app that centralizes all the logistical aspects of living with roommates, inc
 <img src="https://user-images.githubusercontent.com/31828974/125111420-e1faa600-e0b3-11eb-9f77-47afcaa3af59.png" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+[Figma](https://www.figma.com/file/J5RsGIn9qAiGdPPIpgJAv5/fbu-roommate-app?node-id=0%3A1)
 
 ### [BONUS] Interactive Prototype
 
