@@ -57,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if (e == null) {
                             // Hooray! Let them use the app now.
                             Log.i(TAG, "Registering user succeeded!");
-                            goMainActivity();
+                            goCameraActivity();
                         } else {
                             // Sign up didn't succeed. Look at the ParseException
                             // to figure out what went wrong
@@ -79,9 +79,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    // Intent to Main Activity
-    private void goMainActivity() {
-        Intent i = new Intent(this, MainActivity.class);
+    // Intent to Camera Activity
+    private void goCameraActivity() {
+        Intent i = new Intent(this, CameraActivity.class);
         startActivity(i);
         finish();
     }

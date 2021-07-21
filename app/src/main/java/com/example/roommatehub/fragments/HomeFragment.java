@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.example.roommatehub.HomeActivity;
 import com.example.roommatehub.R;
+import com.example.roommatehub.models.Group;
 
 import org.jetbrains.annotations.NotNull;
+import org.parceler.Parcels;
 
 
 public class HomeFragment extends Fragment {
@@ -32,6 +34,15 @@ public class HomeFragment extends Fragment {
         Bundle args = new Bundle();
         args.putString("title", title);
         args.putString("description", description);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    // Creates a new fragment given a Group
+    public static HomeFragment newInstance(Group group) {
+        HomeFragment fragment = new HomeFragment();
+        Bundle args = new Bundle();
+        args.putParcelable("group", Parcels.wrap(group));
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,8 +66,9 @@ public class HomeFragment extends Fragment {
         tvTitle = view.findViewById(R.id.tvTitle);
 
         // Get back arguments
-        String title = getArguments().getString("title", "");
-        String description = getArguments().getString("description", "");
+        Group group = Parcels.unwrap(getArguments().getParcelable("group"));
+        String title = group.getTitle();
+        String description = group.getDescription();
 
         tvTitle.setText("Welcome to "+title+"!");
     }

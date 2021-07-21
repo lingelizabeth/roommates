@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.roommatehub.fragments.ChoresFragment;
 import com.example.roommatehub.fragments.GroupProfileFragment;
 import com.example.roommatehub.fragments.HomeFragment;
 import com.example.roommatehub.fragments.NotesFragment;
@@ -35,7 +36,10 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment fragment;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        fragment = HomeFragment.newInstance(group.getTitle(), group.getDescription());
+                        fragment = HomeFragment.newInstance(group);
+                        break;
+                    case R.id.action_chores:
+                        fragment = ChoresFragment.newInstance(group);
                         break;
                     case R.id.action_notes:
                         fragment = NotesFragment.newInstance(group);

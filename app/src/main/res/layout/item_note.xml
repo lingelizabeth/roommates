@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="TextView" />
 
     <TextView
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="15dp"
-        android:text="TextView" />
+        android:layout_marginTop="5dp"
+        tools:text="first item" />
 
     <TextView
         android:id="@+id/tvSecondItem"
@@ -30,9 +30,10 @@
         android:layout_below="@+id/tvFirstItem"
         android:layout_marginStart="25dp"
         android:layout_marginTop="5dp"
-        android:text="TextView" />
+        tools:text="second item" />
 
     <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/tvSecondItem"

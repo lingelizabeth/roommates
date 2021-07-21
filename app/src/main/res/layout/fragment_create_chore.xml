@@ -1,0 +1,82 @@
+<!-- fragment_edit_name.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_name"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_gravity="center" android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/tvChore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="Chore type" />
+
+    <EditText
+        android:id="@+id/etChore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNewChore"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_your_name2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etChore"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="20dp"
+        android:text="Day of week" />
+
+    <Spinner
+        android:id="@+id/spinnerDay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_your_name2"
+        android:layout_marginTop="5dp"
+        android:entries="@array/day_array" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="80dp"
+        android:text="Save" />
+
+    <Spinner
+        android:id="@+id/spinnerChore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvChore"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/tvNewChore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerChore"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="16dp"
+        android:text="New Chore Type"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spinnerDay"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="20dp"
+        android:text="Assign to" />
+
+</RelativeLayout>

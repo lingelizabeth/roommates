@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             public void done(List<Group> groups, ParseException e) {
                 // check for errors
                 if (e != null) {
-                    Log.e(TAG, "Issue with getting posts", e);
+                    Log.e(TAG, "Issue with getting groups", e);
                     return;
                 }
 

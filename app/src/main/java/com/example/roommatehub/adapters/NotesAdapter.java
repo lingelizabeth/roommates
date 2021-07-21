@@ -1,14 +1,20 @@
 package com.example.roommatehub.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roommatehub.fragments.NotesDetailFragment;
+import com.example.roommatehub.fragments.NotesFragment;
 import com.example.roommatehub.models.ListItem;
 import com.example.roommatehub.models.Note;
 import com.example.roommatehub.R;
@@ -46,7 +52,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
         return notes.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvTitle, tvFirstItem, tvSecondItem;
 
@@ -56,6 +62,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvFirstItem = itemView.findViewById(R.id.tvFirstItem);
             tvSecondItem = itemView.findViewById(R.id.tvSecondItem);
+
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Note note){
@@ -70,6 +78,27 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
                 ListItem secondItem = (ListItem) note.getItemList().get(1);
                 tvSecondItem.setText(secondItem.getText());
             }
+        }
+
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+
+            if (position != RecyclerView.NO_POSITION) {
+                // Get post at the current position
+                Note note = notes.get(position);
+
+                // Pass Note ID to the detail fragment
+                // Detail fragment will query each list item on its own
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Fragment myFragment = NotesDetailFragment.newInstance(note);
+                activity.getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.flContainer, myFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+
         }
     }
 }

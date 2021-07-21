@@ -8,6 +8,12 @@
         android:title="Home"
         app:showAsAction="always" />
     <item
+        android:id="@+id/action_chores"
+        android:enabled="true"
+        android:icon="@drawable/broom"
+        android:title="Chores"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/action_notes"
         android:enabled="true"
         android:icon="@drawable/ic_notes"
