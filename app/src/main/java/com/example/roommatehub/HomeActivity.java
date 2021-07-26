@@ -45,7 +45,7 @@ public class HomeActivity extends AppCompatActivity {
                         fragment = NotesFragment.newInstance(group);
                         break;
                     case R.id.action_group:
-                        fragment = new GroupProfileFragment();
+                        fragment = GroupProfileFragment.newInstance(group);
                         break;
                     default: return true;
                 }

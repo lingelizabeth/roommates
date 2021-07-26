@@ -90,39 +90,4 @@ public class UserIconAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         userIcons.clear();
         notifyDataSetChanged();
     }
-
-//    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-//
-//        private ImageView ivProfileImage;
-//
-//        public ViewHolder(@NonNull @NotNull View itemView) {
-//            super(itemView);
-//
-//            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
-//            itemView.setOnClickListener(this);
-//        }
-//
-//        public void bind(UserIcon userIcon){
-//            // Get user profile image or default image
-//            String url = userIcon.getImageUrl();
-//            Glide.with(context)
-//                    .load(url)
-//                    .circleCrop()
-//                    .into(ivProfileImage);
-//        }
-//
-//        @Override
-//        public void onClick(View v) {
-//            int position = getAdapterPosition();
-//
-//            if(position != RecyclerView.NO_POSITION){
-//                UserIcon userIcon = userIcons.get(position);
-//                // Set items to "selected" when clicked and display a "selected" state
-//                userIcon.setSelected(!userIcon.isSelected());
-//                ivProfileImage.setBackground(userIcon.isSelected() ?
-//                        context.getDrawable(R.drawable.blue_circle) :
-//                        context.getDrawable(R.drawable.white));
-//            }
-//        }
-//    }
 }
