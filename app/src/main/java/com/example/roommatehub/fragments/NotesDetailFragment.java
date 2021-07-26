@@ -267,9 +267,11 @@ public class NotesDetailFragment extends Fragment {
                     allItems.addAll(note.getItemList());
                     adapter.notifyDataSetChanged();
 
-                    // refresh the current note
-                    if(!notes.isEmpty())
+                    // refresh the current note in list and adapter
+                    if(!notes.isEmpty()){
                          note = notes.get(0);
+                         adapter.setNote(notes.get(0));
+                    }
                 }
             });
     }

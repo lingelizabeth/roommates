@@ -6,12 +6,12 @@
 
     <TextView
         android:id="@+id/tv1"
+        style="@style/Heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
-        android:text="Chores"
-        android:textSize="18dp" />
+        android:text="Filter by user" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvChores"
@@ -19,9 +19,8 @@
         android:layout_height="match_parent"
         android:layout_below="@id/tv1"
         android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="2dp" />
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="70dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnAdd"
@@ -32,5 +31,33 @@
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
         android:src="@drawable/ic_baseline_add_24" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@+id/tv1" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="45dp"
+        android:progress="0" />
+
+    <TextView
+        android:id="@+id/tvProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="45dp"
+        android:layout_toEndOf="@+id/progressBar"
+        tools:text="80%" />
 
 </RelativeLayout>

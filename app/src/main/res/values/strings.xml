@@ -3,4 +3,5 @@
     <string name="default_gradient">https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/12/Gradient_builder_2.jpg</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_profile_image_url">https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png</string>
 </resources>

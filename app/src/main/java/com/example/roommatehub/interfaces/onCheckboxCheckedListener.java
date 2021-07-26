@@ -1,2 +1,6 @@
-package com.example.roommatehub.interfaces;public interface onCheckboxCheckedListener {
+package com.example.roommatehub.interfaces;
+
+
+public interface onCheckboxCheckedListener {
+    void onCheckboxChecked(boolean checked);
 }

@@ -10,8 +10,8 @@ import com.example.roommatehub.fragments.ChorePageFragment;
 import com.example.roommatehub.models.Group;
 
 public class ChorePagerAdapter extends FragmentPagerAdapter {
-    final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] { "Sun", "Mon", "Tues" };
+    final int PAGE_COUNT = 7;
+    private String tabTitles[] = new String[] { "Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat" };
     private Context context;
     private Group group;
 

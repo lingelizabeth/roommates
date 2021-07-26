@@ -78,6 +78,10 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
         notifyDataSetChanged();
     }
 
+    public void setNote(Note newNote){
+        this.note = newNote;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener{
 
         EditText etText;
@@ -133,7 +137,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
 
                     if(position != RecyclerView.NO_POSITION) {
                         // Run another query to get the most updated currently editing
-                        refreshNote();
+                        boolean noteChanged = refreshNote();
                         if(noteChanged){
                             Snackbar.make(itemView, "Please refresh before you can edit!", Snackbar.LENGTH_LONG).show();
                             return;
@@ -218,7 +222,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             imm.hideSoftInputFromWindow(etText.getWindowToken(), 0);
         }
 
-        private void refreshNote(){
+        private boolean refreshNote(){
             // Directly edits and updates the note for this list item
             // specify what type of data we want to query
             // save original note data to check if it changes later
@@ -232,33 +236,54 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             query.whereEqualTo("objectId", note.getObjectId());
             query.include(Note.KEY_ITEMLIST);
             // TODO: make sure you can't edit if the note has been changed
-            query.findInBackground(new FindCallback<Note>() {
-                @Override
-                public void done(List<Note> notes, ParseException e) {
-                    // check for errors
-                    if (e != null) {
-                        Log.e(TAG, "Issue fetching most recent notes: "+e);
-                        return;
+            try {
+                Note updatedNote = query.getFirst();
+                for(int i=0;i< updatedNote.getItemList().size();i++){
+                    ListItem temp = new ListItem();
+                    try {
+                        temp = updatedNote.getItemList().get(i).fetchIfNeeded();
+                    } catch (ParseException parseException) {
+                        parseException.printStackTrace();
                     }
-                    // refresh the current note
-                    if(!notes.isEmpty()) {
-                        note = notes.get(0);
-                        for(int i=0;i< note.getItemList().size();i++){
-                            ListItem temp = new ListItem();
-                            try {
-                                temp = note.getItemList().get(i).fetchIfNeeded();
-                            } catch (ParseException parseException) {
-                                parseException.printStackTrace();
-                            }
-                            if(!originalText.get(i).equals(temp.getText())){
-                                // if refreshed text has changed, prompt user to refresh
+                    if(!originalText.get(i).equals(temp.getText())){
+                        // if refreshed text has changed, prompt user to refresh
 //                                Snackbar.make(itemView, "Please refresh before you can edit!", Snackbar.LENGTH_LONG).show();
-                                noteChanged = true;
-                            }
-                        }
+                        noteChanged = true;
                     }
                 }
-            });
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return noteChanged;
+
+//            query.findInBackground(new FindCallback<Note>() {
+//                @Override
+//                public void done(List<Note> notes, ParseException e) {
+//                    // check for errors
+//                    if (e != null) {
+//                        Log.e(TAG, "Issue fetching most recent notes: "+e);
+//                        return;
+//                    }
+//                    // refresh the current note
+//                    if(!notes.isEmpty()) {
+//                        note = notes.get(0);
+//                        for(int i=0;i< note.getItemList().size();i++){
+//                            ListItem temp = new ListItem();
+//                            try {
+//                                temp = note.getItemList().get(i).fetchIfNeeded();
+//                            } catch (ParseException parseException) {
+//                                parseException.printStackTrace();
+//                            }
+//                            if(!originalText.get(i).equals(temp.getText())){
+//                                // if refreshed text has changed, prompt user to refresh
+////                                Snackbar.make(itemView, "Please refresh before you can edit!", Snackbar.LENGTH_LONG).show();
+//                                noteChanged = true;
+//                            }
+//                        }
+//                    }
+//                }
+//            });
         }
 
     }

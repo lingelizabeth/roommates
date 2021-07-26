@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin' // OneSignal notifications API
 }
 
 android {
@@ -48,5 +49,6 @@ dependencies {
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0' // Swipe refresh
-
+    implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]' // OneSignal notifications API
+    implementation 'com.google.android.gms:play-services-location:18.0.0' // Google play location SDK
 }

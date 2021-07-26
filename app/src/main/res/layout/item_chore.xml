@@ -7,11 +7,20 @@
 
     <CheckBox
         android:id="@+id/cbChore"
+        style="@style/BodyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="15dp"
         android:textSize="16dp"
         tools:text="Do Dishes" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvUsers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp" />
 
 </RelativeLayout>
