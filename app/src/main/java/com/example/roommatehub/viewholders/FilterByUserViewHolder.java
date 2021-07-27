@@ -28,7 +28,7 @@ public class FilterByUserViewHolder extends BaseViewHolder<UserIcon> implements 
         this.listener = listener;
         this.userIcons = userIcons;
 //        this.selectedIcons = selectedIcons;
-        ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+        ivProfileImage = itemView.findViewById(R.id.ivIcon);
         ivProfileImage.setOnClickListener(this);
         ivProfileImage.requestLayout();
         // Set smaller image view

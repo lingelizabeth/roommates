@@ -51,7 +51,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     private TextView tvDay, tvProgress;
     private FloatingActionButton btnAdd;
     ProgressBar progressBar;
-    private double progress; // double between 1 and 100
+    private static double progress; // double between 1 and 100
 
     private ChoresAdapter adapter;
     List<Chore> allChores;
@@ -109,7 +109,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
 
         // instantiate notes list and adapter
         allChores = new ArrayList<Chore>();
-        adapter = new ChoresAdapter(getContext(), allChores, this);
+        adapter = new ChoresAdapter(getContext(), allChores, this, group);
 
         // Set RecyclerView adapter and layout manager
         rvChores.setAdapter(adapter);
@@ -194,7 +194,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        Toast.makeText(getContext(), "Dialog just dismissed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Create Chore Dialog dismissed", Toast.LENGTH_LONG).show();
         // Possible to pass data from the dialog fragment to here?
     }
 
@@ -218,5 +218,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
             progressBar.setProgress((int) Math.round(progress));
             tvProgress.setText(progressBar.getProgress()+"%");
         }
+    }
+
+    public static int getProgress(){
+        return ((int) Math.round(progress));
     }
 }

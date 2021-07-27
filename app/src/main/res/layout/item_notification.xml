@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/rounded_rectangle"
-    android:elevation="5dp"
-    android:padding="20dp">
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/ivIcon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="0dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        tools:srcCompat="@drawable/ic_os_notification_fallback_white_24dp" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -27,13 +22,15 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/ivIcon"
-        android:text="TextView" />
+        android:fontFamily="@font/quicksand_bold"
+        android:textSize="16dp"
+        tools:text="Rachel edited Grocery List" />
 
     <TextView
         android:id="@+id/tvMessage"
-        style="@style/CaptionText"
+        style="@style/BodyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
@@ -41,7 +38,7 @@
         android:layout_marginTop="4dp"
         android:layout_toEndOf="@+id/ivIcon"
         android:textSize="14dp"
-        tools:text="Last seen in Allston, MA" />
+        tools:text='"Eggs" changed to "Organic Eggs"' />
 
     <TextView
         android:id="@+id/tvTimeAgo"
@@ -50,8 +47,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvMessage"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/ivIcon"
         android:textSize="14dp"
         tools:text="2 minutes ago" />
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvTimeAgo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray" />
+
 </RelativeLayout>

@@ -17,7 +17,7 @@ public class SmallUserIconViewHolder extends BaseViewHolder<UserIcon> {
     public SmallUserIconViewHolder(View itemView, Context context) {
         super(itemView);
         this.context = context;
-        ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+        ivProfileImage = itemView.findViewById(R.id.ivIcon);
         ivProfileImage.requestLayout();
         // Set smaller image view
         ivProfileImage.getLayoutParams().height = 90;

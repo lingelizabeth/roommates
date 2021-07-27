@@ -23,8 +23,6 @@ import com.parse.ParseUser;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -71,10 +69,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
-            tvName = itemView.findViewById(R.id.tvName);
-            tvLocation = itemView.findViewById(R.id.tvLocation);
+            tvName = itemView.findViewById(R.id.tvTitle);
+            tvLocation = itemView.findViewById(R.id.tvMessage);
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
-            ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+            ivProfileImage = itemView.findViewById(R.id.ivIcon);
         }
 
         public void bind(ParseUser user){

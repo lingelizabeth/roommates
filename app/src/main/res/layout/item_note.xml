@@ -16,20 +16,24 @@
 
     <TextView
         android:id="@+id/tvFirstItem"
+        style="@style/CaptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
+        android:textSize="14sp"
         tools:text="first item" />
 
     <TextView
         android:id="@+id/tvSecondItem"
+        style="@style/CaptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvFirstItem"
         android:layout_marginStart="15dp"
         android:layout_marginTop="5dp"
+        android:textSize="14sp"
         tools:text="second item" />
 
     <View

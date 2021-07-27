@@ -7,7 +7,7 @@
     android:clickable="true">
 
     <ImageView
-        android:id="@+id/ivProfileImage"
+        android:id="@+id/ivIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"

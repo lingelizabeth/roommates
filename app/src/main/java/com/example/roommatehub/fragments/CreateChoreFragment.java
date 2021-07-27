@@ -19,11 +19,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roommatehub.OneSignalNotificationSender;
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.UserIconAdapter;
 import com.example.roommatehub.models.Chore;
 import com.example.roommatehub.models.ChoreType;
 import com.example.roommatehub.models.Group;
+import com.example.roommatehub.models.Notification;
 import com.example.roommatehub.models.UserIcon;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -168,6 +170,7 @@ public class CreateChoreFragment extends DialogFragment {
                 }
                 chore.addUsersFromUserIcons(assignedUsers);
 
+                // Set other attributes liek day of week, group, type
                 chore.setDayOfWeek(spinnerDay.getSelectedItem().toString());
                 chore.setGroup(group);
                 chore.setChoreType(choreName, group);
@@ -179,6 +182,17 @@ public class CreateChoreFragment extends DialogFragment {
                             return;
                         }
                         Log.i(TAG, "chore saved successfully");
+
+                        // On successful save, create a notification
+                        String[] data = Notification.getCreateChoreNotificationData(ParseUser.getCurrentUser(), chore, group, getString(R.string.new_chore_icon_url));
+                        Notification notification = new Notification("Chores", data,
+                        "ic_bell_white_24dp",
+                        "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png",
+                        "[]",
+                        true,
+                        group);
+                        OneSignalNotificationSender.sendDeviceNotification(notification);
+
                         dismiss();
                     }
                 });

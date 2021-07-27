@@ -22,7 +22,7 @@ public class AssignUserViewHolder extends BaseViewHolder<UserIcon> implements Vi
         super(itemView);
         this.context = context;
         this.userIcons = userIcons;
-        ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
+        ivProfileImage = itemView.findViewById(R.id.ivIcon);
         ivProfileImage.setOnClickListener(this);
     }
 

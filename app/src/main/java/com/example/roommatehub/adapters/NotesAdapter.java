@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roommatehub.MainActivity;
 import com.example.roommatehub.fragments.NotesDetailFragment;
 import com.example.roommatehub.fragments.NotesFragment;
 import com.example.roommatehub.models.ListItem;

@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.roommatehub.fragments.ActivityFragment;
 import com.example.roommatehub.fragments.ChoresFragment;
 import com.example.roommatehub.fragments.GroupProfileFragment;
 import com.example.roommatehub.fragments.HomeFragment;
@@ -43,6 +44,9 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case R.id.action_notes:
                         fragment = NotesFragment.newInstance(group);
+                        break;
+                    case R.id.action_activity:
+                        fragment = ActivityFragment.newInstance(group);
                         break;
                     case R.id.action_group:
                         fragment = GroupProfileFragment.newInstance(group);

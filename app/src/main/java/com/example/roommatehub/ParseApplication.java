@@ -5,6 +5,8 @@ import com.example.roommatehub.models.ChoreType;
 import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.ListItem;
 import com.example.roommatehub.models.Note;
+import com.example.roommatehub.models.Notification;
+import com.example.roommatehub.models.NotificationData;
 import com.onesignal.OneSignal;
 import com.parse.Parse;
 import com.parse.ParseObject;
@@ -33,6 +35,7 @@ public class ParseApplication extends Application{
         ParseObject.registerSubclass(ListItem.class);
         ParseObject.registerSubclass(Chore.class);
         ParseObject.registerSubclass(ChoreType.class);
+        ParseObject.registerSubclass(Notification.class);
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId("38JcH2O8dPOnItWDyvMBusAuI2bSvRGGrVoY2Edp")
                 .clientKey("OdRBiP4ZtYcwxUAXhRGTTMgome0qJSA69ToN4olB")

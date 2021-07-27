@@ -62,7 +62,7 @@
         android:textColor="#2196F3" />
 
     <ImageView
-        android:id="@+id/ivProfileImage"
+        android:id="@+id/ivIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -75,7 +75,7 @@
         android:id="@+id/btnSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivProfileImage"
+        android:layout_below="@id/ivIcon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:backgroundTint="#2196F3"

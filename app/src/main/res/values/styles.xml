@@ -2,7 +2,8 @@
 <resources>
     <style name="listHeading" parent="@android:style/TextAppearance.Large">
         <item name="android:color">@color/black</item>
-        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/quicksand_bold</item>
+        <item name="android:textSize">22sp</item>
     </style>
     <style name="TabHeading">
         <item name="android:textColor">@color/black</item>

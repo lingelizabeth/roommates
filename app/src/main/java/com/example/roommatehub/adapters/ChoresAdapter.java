@@ -1,6 +1,7 @@
 package com.example.roommatehub.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roommatehub.OneSignalNotificationSender;
 import com.example.roommatehub.R;
 import com.example.roommatehub.interfaces.onCheckboxCheckedListener;
 import com.example.roommatehub.models.Chore;
+import com.example.roommatehub.models.Group;
+import com.example.roommatehub.models.Notification;
 import com.example.roommatehub.models.UserIcon;
 import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -29,6 +35,7 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
     private Context context;
     private List<Chore> chores;
     private onCheckboxCheckedListener listener;
+    private Group group;
 
 
     public ChoresAdapter(Context context, List<Chore> chores) {
@@ -36,10 +43,11 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
         this.chores = chores;
 
     }
-    public ChoresAdapter(Context context, List<Chore> chores, onCheckboxCheckedListener listener) {
+    public ChoresAdapter(Context context, List<Chore> chores, onCheckboxCheckedListener listener, Group group) {
         this.context = context;
         this.chores = chores;
         this.listener = listener;
+        this.group = group;
     }
 
     @NonNull
@@ -90,7 +98,31 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
                     if(position != RecyclerView.NO_POSITION){
                         Chore currentChore = chores.get(position);
                         currentChore.setChecked(checked);
-                        currentChore.saveInBackground();
+                        currentChore.saveInBackground(new SaveCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e!=null){
+                                    Log.e("ChoresAdapter", "Error saving chore status: "+e);
+                                }
+                                Log.i("ChoresAdapter", "Chore marked done");
+
+                                // Add notification that chore was marked completed
+                                String[] data = Notification.getCompleteChoreNotificationData(
+                                        ParseUser.getCurrentUser(),
+                                        currentChore,
+                                        group,
+                                        context.getString(R.string.complete_chore_icon_url));
+                                Notification notification = new Notification("Chores",
+                                        data,
+                                        "ic_bell_white_24dp",
+                                        "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png",
+                                        "[]",
+                                        true,
+                                        group);
+                                OneSignalNotificationSender.sendDeviceNotification(notification);
+
+                            }
+                        });
 
                         listener.onCheckboxChecked(checked);
                     }
@@ -110,6 +142,7 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
 
         public void bind(Chore chore){
             cbChore.setText(chore.getName());
+            cbChore.setChecked(chore.isChecked());
 
             //Populate users for this chore
             List<UserIcon> userIcons = null;

@@ -47,7 +47,7 @@ public class CameraActivity extends AppCompatActivity {
         tv1 = findViewById(R.id.tv1);
         tv2 = findViewById(R.id.tv2);
         ivIcon = findViewById(R.id.ivIcon);
-        ivProfileImage = findViewById(R.id.ivProfileImage);
+        ivProfileImage = findViewById(R.id.ivIcon);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
