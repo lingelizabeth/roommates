@@ -3,6 +3,7 @@ package com.example.roommatehub.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -45,7 +46,7 @@ public class NotesDetailFragment extends Fragment {
     private boolean isNew;
 
     EditText etListTitle, etNewItem;
-    Button btnAddItem, btnSave;
+    Button btnAddItem, btnSave, btnBack;
     RecyclerView rvListItems;
     List<ListItem> allItems;
     ListItemAdapter adapter;
@@ -97,6 +98,14 @@ public class NotesDetailFragment extends Fragment {
                 if(!hasFocus){
                     hideKeyboard();
                 }
+            }
+        });
+
+        btnBack = view.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
 

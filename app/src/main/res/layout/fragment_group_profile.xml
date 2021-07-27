@@ -16,19 +16,6 @@
         android:layout_marginTop="20dp"
         android:text="Group Profile" />
 
-<!--    Commented here but might use this code elsewhere-->
-<!--    <Button-->
-<!--        android:id="@+id/btnBack"-->
-<!--        android:layout_width="40dp"-->
-<!--        android:layout_height="40dp"-->
-<!--        android:layout_alignParentStart="true"-->
-<!--        android:layout_alignParentTop="true"-->
-<!--        android:layout_marginStart="34dp"-->
-<!--        android:layout_marginTop="31dp"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:drawableBottom="@drawable/ic_baseline_arrow_back_24"-->
-<!--        android:minHeight="30dp" />-->
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"

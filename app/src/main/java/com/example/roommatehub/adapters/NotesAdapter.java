@@ -95,6 +95,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
                 Fragment myFragment = NotesDetailFragment.newInstance(note);
                 activity.getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(
+                                R.anim.slide_in,  // enter
+                                R.anim.fade_out,  // exit
+                                R.anim.fade_in,   // popEnter
+                                R.anim.slide_out  // popExit
+                        )
                         .replace(R.id.flContainer, myFragment)
                         .addToBackStack(null)
                         .commit();

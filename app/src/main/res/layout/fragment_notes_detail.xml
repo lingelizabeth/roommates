@@ -7,13 +7,26 @@
     android:focusableInTouchMode="true"
     tools:context=".fragments.NotesDetailFragment">
 
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="30dp"
+        android:background="@android:color/transparent"
+        android:drawableBottom="@drawable/ic_baseline_arrow_back_24"
+        android:minHeight="30dp" />
+
     <EditText
         android:id="@+id/etListTitle"
         style="@style/listHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@id/btnBack"
         android:background="@android:color/transparent"
         android:hint="New Note"
         android:textSize="36dp"
@@ -53,6 +66,7 @@
 
             <EditText
                 android:id="@+id/etNewItem"
+                style="@style/CaptionText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rvListItems"
@@ -60,7 +74,8 @@
                 android:layout_marginTop="18dp"
                 android:background="@android:color/transparent"
                 android:hint="Add item"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textSize="18dp" />
 
             <View
                 android:id="@+id/line2"
@@ -76,7 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rvListItems"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="11dp"
                 android:layout_marginEnd="15dp"
                 android:background="@android:color/transparent"
                 android:drawableTop="@drawable/ic_baseline_add_24"
