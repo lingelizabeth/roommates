@@ -177,9 +177,18 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
                 if(e!=null){
                     Log.e(TAG, "Issue fetching chores: "+e);
                 }
+
+                // Recalculate and update progress bar
+                int choresDone = 0;
                 for(Chore chore: chores){
-                    Log.i(TAG, "fetched chore: "+chore.getName());
+                    if(chore.isChecked())
+                        choresDone++;
                 }
+                progress = ((choresDone*1.0)/chores.size())*100;
+                progressBar.setProgress((int) Math.round(progress));
+                tvProgress.setText(progressBar.getProgress()+"%");
+
+                // Update chores list and adapter
                 Log.i(TAG, "Successfully fetched chores for "+day);
                 allChores.addAll(chores);
                 adapter.notifyDataSetChanged();
