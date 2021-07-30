@@ -1,12 +1,21 @@
 package com.example.roommatehub;
 
 import android.text.format.DateUtils;
+import android.util.Log;
+
+import com.example.roommatehub.models.Chore;
+import com.example.roommatehub.models.Group;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseQuery;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Helper {
+    public static final String TAG = "Helper";
     public static Map<String, String> states;
 
     public Helper() {
@@ -92,7 +101,32 @@ public class Helper {
 
         return relativeDate;
     }
+
+    public static int getProgressOnDay(String day, Group group){
+        ParseQuery query = ParseQuery.getQuery(Chore.class);
+        // Query chores for given group
+        query.whereEqualTo(Chore.KEY_GROUP, group);
+        // Query chores for the current tab/day of the week
+        query.whereEqualTo(Chore.KEY_DAY, day);
+        try {
+            List<Chore> chores = query.find();
+            // Recalculate and update progress bar
+            int choresDone = 0;
+            for(Chore chore: chores){
+                if(chore.isChecked())
+                    choresDone++;
+            }
+            int progress = (int) Math.round(choresDone * 1.0 / chores.size()*100);
+            Log.i(TAG, progress+"% progress on "+day);
+            return progress;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return -1;
+        }
 }
+
+
 
 
 

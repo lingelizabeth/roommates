@@ -1,5 +1,8 @@
 package com.example.roommatehub.models;
 
+import android.util.Log;
+
+import com.example.roommatehub.Helper;
 import com.example.roommatehub.R;
 import com.example.roommatehub.fragments.ChorePageFragment;
 import com.parse.Parse;
@@ -65,7 +68,7 @@ public class Notification extends ParseObject {
 
     public static String[] getCompleteChoreNotificationData(ParseUser currentUser, Chore chore, Group group, String icon){
         String title = currentUser.getUsername()+" marked \""+chore.getName()+"\" as completed in "+group.getTitle();
-        String message = chore.getDayOfWeek()+"\\'s chore progress is "+ ChorePageFragment.getProgress()+"%";
+        String message = chore.getDayOfWeek()+"\\'s chore progress is "+Helper.getProgressOnDay(chore.getDayOfWeek(), group)+"%";
         String[] data = {
                 title, message, icon
         };

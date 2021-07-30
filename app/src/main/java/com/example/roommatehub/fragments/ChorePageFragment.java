@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.ChoresAdapter;
 import com.example.roommatehub.adapters.UserIconAdapter;
@@ -28,6 +29,7 @@ import com.example.roommatehub.models.Chore;
 import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.UserIcon;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -53,7 +55,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     private FloatingActionButton btnAdd;
     private SwipeRefreshLayout swipeContainer;
     ProgressBar progressBar;
-    private static double progress; // double between 1 and 100
+    private double progress; // double between 1 and 100
+    LottieAnimationView lottieAnimationView;
+
 
     private ChoresAdapter adapter;
     List<Chore> allChores;
@@ -146,6 +150,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
         progressBar = view.findViewById(R.id.progressBar);
         tvProgress = view.findViewById(R.id.tvProgress);
 
+        // Animation on
+        lottieAnimationView = view.findViewById(R.id.animationView);
+
     }
 
     private void populateUsers(Group group) {
@@ -203,6 +210,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
                 progress = ((choresDone*1.0)/chores.size())*100;
                 progressBar.setProgress((int) Math.round(progress));
                 tvProgress.setText(progressBar.getProgress()+"%");
+                Log.i(TAG, progress+"% progress on "+day);
 
                 // Update chores list and adapter
                 Log.i(TAG, "Successfully fetched chores for "+day);
@@ -234,12 +242,16 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     @Override
     public void onCheckboxChecked(boolean checked) {
         // Increase or decrease progress bar accordingly
+        Log.i(TAG, "progress on progress checked: "+progress+" for "+day);
         int totalChores = allChores.size();
         double percentChange = (1.0/totalChores)*100;
         if(checked){
             progress += percentChange;
             progressBar.setProgress((int) Math.round(progress));
             tvProgress.setText(progressBar.getProgress()+"%");
+            if(progress == 100.0){
+                lottieAnimationView.playAnimation();
+            }
         }else{
             progress -= percentChange;
             progressBar.setProgress((int) Math.round(progress));
@@ -247,7 +259,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
         }
     }
 
-    public static int getProgress(){
-        return ((int) Math.round(progress));
-    }
+//    public static int getProgress(){
+//        return ((int) Math.round(progress));
+//    }
 }
