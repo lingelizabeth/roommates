@@ -20,12 +20,12 @@
         android:title="Notes"
         app:showAsAction="always" />
 
-    <item
-        android:id="@+id/action_activity"
-        android:enabled="true"
-        android:icon="@drawable/ic_outline_favorite_border_24"
-        android:title="Activity"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/action_activity"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_outline_favorite_border_24"-->
+<!--        android:title="Activity"-->
+<!--        app:showAsAction="always" />-->
     <item
         android:id="@+id/action_group"
         android:enabled="true"

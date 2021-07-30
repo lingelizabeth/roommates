@@ -17,9 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.roommatehub.OneSignalNotificationSender;
 import com.example.roommatehub.R;
+import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.ListItem;
 import com.example.roommatehub.models.Note;
+import com.example.roommatehub.models.Notification;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -40,11 +43,15 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
     private List<ListItem> listItems;
     private Note note;
     private boolean noteChanged = false;
+    private Group group;
+    public List<String> originalText;
+    public int editedIndex;
 
     public ListItemAdapter(Context context, List<ListItem> listItems, Note note) {
         this.context = context;
         this.listItems = listItems;
         this.note = note;
+        this.group = note.getGroup();
     }
 
     @NonNull
@@ -115,6 +122,11 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
                                     note.getItemList().get(position).fetchIfNeeded().remove("currentlyEditing");
                                 } catch (ParseException parseException) {
                                     parseException.printStackTrace();
+                                }
+
+                                // Create notification for edit
+                                if(noteChanged){
+                                    createNotification();
                                 }
                             }
                         });
@@ -187,6 +199,24 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             itemView.setOnLongClickListener(this);
         }
 
+        private void createNotification() {
+            // Add notification that chore was marked completed
+            String[] data = Notification.getEditListNotificationData(
+                            ParseUser.getCurrentUser(),
+                            note,
+                            originalText.get(editedIndex),
+                            note.getItemList().get(editedIndex).getText(),
+                            group,
+                            context.getString(R.string.edit_note_icon_url));
+            Notification notification = new Notification("Edit Note",
+                    data,
+                    "ic_bell_white_24dp",
+                    "[]",
+                    true,
+                    group);
+            OneSignalNotificationSender.sendDeviceNotification(notification);
+        }
+
         public void bind(ListItem listItem){
             etText.setText(listItem.getText());
         }
@@ -227,7 +257,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             // specify what type of data we want to query
             // save original note data to check if it changes later
             noteChanged = false;
-            List<String> originalText = new ArrayList<>();
+            originalText = new ArrayList<>();
             for(ListItem l : note.getItemList()){
                 originalText.add(l.getText());
             }
@@ -246,8 +276,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
                         parseException.printStackTrace();
                     }
                     if(!originalText.get(i).equals(temp.getText())){
-                        // if refreshed text has changed, prompt user to refresh
-//                                Snackbar.make(itemView, "Please refresh before you can edit!", Snackbar.LENGTH_LONG).show();
+                        editedIndex = i;
                         noteChanged = true;
                     }
                 }

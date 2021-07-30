@@ -1,11 +1,16 @@
 package com.example.roommatehub.models;
 
+import android.util.Log;
+
+import com.parse.FindCallback;
 import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @ParseClassName("Group")
@@ -29,6 +34,24 @@ public class Group extends ParseObject {
     public void setTitle(String title){
         put(KEY_TITLE, title);
     }
+
+    // Runs a Parse Query to get the member list
+    public List<ParseUser> getMemberList() throws ParseException {
+        ParseRelation relation = getRelation("groupMembers");
+        ParseQuery query = relation.getQuery();
+        List<ParseUser> members = query.find();
+//        query.findInBackground(new FindCallback<ParseUser>() {
+//
+//            @Override
+//            public void done(List<ParseUser> objects, ParseException e) {
+//                if(e!=null){
+//                    Log.e("Group", "Error getting group members"+e);
+//                }
+//                members.addAll(objects);
+//            }
+//        });
+        return members;
+    };
 
     public ParseRelation<ParseUser> getMembers() {return getRelation(KEY_MEMBERS);};
 

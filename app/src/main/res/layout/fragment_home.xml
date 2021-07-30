@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment"
+    android:background="@color/white">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -12,9 +12,74 @@
         android:id="@+id/tvTitle"
         style="@style/TabHeading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
         android:text="Welcome home!" />
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/TabHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="300dp"
+        android:text="Activity" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="0dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/choreWidget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTitle"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/rounded_rectangle"
+        android:elevation="4dp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/Heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Today's Chore\nProgress"
+            android:textSize="16dp"></TextView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:layout_below="@+id/tv1" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/progressBar"
+            android:layout_alignTop="@id/progressBar"
+            android:layout_alignRight="@id/progressBar"
+            android:layout_alignBottom="@id/progressBar"
+            android:background="#00000000"
+            android:gravity="center"
+            tools:text="75%"></TextView>
+    </RelativeLayout>
 
 </RelativeLayout>

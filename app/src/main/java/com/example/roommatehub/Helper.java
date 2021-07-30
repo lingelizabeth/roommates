@@ -1,5 +1,8 @@
 package com.example.roommatehub;
 
+import android.text.format.DateUtils;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -79,6 +82,15 @@ public class Helper {
         states.put("Wisconsin", "WI");
         states.put("Wyoming", "WY");
         states.put("Yukon Territory", "YT");
+    }
+
+    public static String getRelativeTimeAgo(Date date) {
+        String relativeDate = "";
+        long dateMillis = date.getTime();
+        relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+
+        return relativeDate;
     }
 }
 

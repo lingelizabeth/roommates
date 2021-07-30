@@ -164,8 +164,8 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(Location location) {
                             // GPS location can be null if GPS is switched off
-                            Log.i(TAG, "get location success! " + location.toString());
                             if (location != null) {
+                                Log.i(TAG, "get location success! " + location.toString());
                                 onLocationChanged(location);
 
                                 // Save location to parse database

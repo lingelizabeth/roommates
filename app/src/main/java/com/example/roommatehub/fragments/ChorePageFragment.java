@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.ChoresAdapter;
@@ -50,6 +51,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     private RecyclerView rvChores, rvUsers;
     private TextView tvDay, tvProgress;
     private FloatingActionButton btnAdd;
+    private SwipeRefreshLayout swipeContainer;
     ProgressBar progressBar;
     private static double progress; // double between 1 and 100
 
@@ -90,9 +92,6 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        tvDay = view.findViewById(R.id.tv1);
-//        tvDay.setText(day); // Eventually remove this
-
         // Recycler view setup for filter by userIcons
         rvUsers = view.findViewById(R.id.rvUsers);
 
@@ -117,6 +116,23 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
 
         queryChores(null, day);
 
+        // Lookup the swipe container view
+        swipeContainer = (SwipeRefreshLayout) view.findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Refresh the list
+                adapter.clear();
+                queryChores(null, day);
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         btnAdd = view.findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +221,8 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     public void onDismiss(DialogInterface dialog) {
         Toast.makeText(getContext(), "Create Chore Dialog dismissed", Toast.LENGTH_LONG).show();
         // Possible to pass data from the dialog fragment to here?
+        adapter.clear();
+        queryChores(null, day);
     }
 
     @Override

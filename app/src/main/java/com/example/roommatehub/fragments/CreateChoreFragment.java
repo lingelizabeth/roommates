@@ -185,9 +185,8 @@ public class CreateChoreFragment extends DialogFragment {
 
                         // On successful save, create a notification
                         String[] data = Notification.getCreateChoreNotificationData(ParseUser.getCurrentUser(), chore, group, getString(R.string.new_chore_icon_url));
-                        Notification notification = new Notification("Chores", data,
+                        Notification notification = new Notification("Create chore", data,
                         "ic_bell_white_24dp",
-                        "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png",
                         "[]",
                         true,
                         group);

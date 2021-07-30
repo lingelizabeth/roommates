@@ -10,10 +10,13 @@ import com.parse.ParseUser;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Date;
+
 @ParseClassName("Notification")
 public class Notification extends ParseObject {
     public static final String KEY_CONTENT = "notificationContent";
     public static final String KEY_GROUP = "group";
+    public static final String KEY_CREATEDAT = "createdAt";
     public static final String LANGUAGE = "en";
 
     public JSONObject getContent(){
@@ -47,13 +50,13 @@ public class Notification extends ParseObject {
     }
 
     public static String[] getCreateChoreNotificationData(ParseUser currentUser, Chore chore, Group group, String icon){
-        String title = currentUser.getUsername()+" created \""+chore.getName()+"\" in"+group.getTitle();
-        String message = "";
-        if(chore.getUserList().contains(currentUser)){
-            message = "You are assigned this on "+chore.getDayOfWeek();
-        } else{
-            message = "You are not assigned anything";
+        String title = currentUser.getUsername()+" created \""+chore.getName()+"\" in "+group.getTitle();
+        String message = "Assigned to ";
+        for(ParseUser user:chore.getUserList()){
+            message += user.getUsername()+", ";
         }
+        message = message.substring(0, message.length()-2)+" on ";
+        message += chore.getDayOfWeek();
         String[] data = {
                 title, message, icon
         };
@@ -69,20 +72,27 @@ public class Notification extends ParseObject {
         return data;
     }
 
+    public static String[] getEditListNotificationData(ParseUser currentUser, Note note, String originalText, String newText, Group group, String icon){
+        String title = currentUser.getUsername()+" edited \""+note.getTitle()+"\" in "+group.getTitle();
+        String message = "\""+originalText+"\" has been changed to \""+ newText+"\"";
+        String[] data = {
+                title, message, icon
+        };
+        return data;
+    }
+
 
         private String title;
         private String[] data;
         private String smallIconRes;
-        private String iconUrl;
         private String buttons;
         private boolean shouldShow;
         private Group group;
 
-        public Notification(String title, String[] data, String smallIconRes, String iconUrl, String buttons, boolean shouldShow, Group group) {
+        public Notification(String title, String[] data, String smallIconRes, String buttons, boolean shouldShow, Group group) {
             this.title = title;
             this.data = data;
             this.smallIconRes = smallIconRes;
-            this.iconUrl = iconUrl;
             this.buttons = buttons;
             this.shouldShow = shouldShow;
             this.group = group;
@@ -93,7 +103,6 @@ public class Notification extends ParseObject {
             this.title = "";
             this.data = null;
             this.smallIconRes = "";
-            this.iconUrl = "";
             this.buttons = "";
             this.shouldShow = true;
             this.group = null;
@@ -109,7 +118,6 @@ public class Notification extends ParseObject {
                 data[2] = (String)notificationContent.get("large_icon");
                 this.data = data;
                 this.smallIconRes = (String)notificationContent.get("small_icon");
-                this.iconUrl = (String)notificationContent.get("large_icon");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -129,10 +137,6 @@ public class Notification extends ParseObject {
 
         public String getSmallIconRes() {
             return smallIconRes;
-        }
-
-        public String getIconUrl() {
-            return iconUrl;
         }
 
         public String getLargeIconUrl() {

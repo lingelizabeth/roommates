@@ -76,6 +76,12 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
+    // Add a list of items
+    public void addAll(List<Chore> list) {
+        chores.addAll(list);
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         CheckBox cbChore;
@@ -107,20 +113,8 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
                                 Log.i("ChoresAdapter", "Chore marked done");
 
                                 // Add notification that chore was marked completed
-                                String[] data = Notification.getCompleteChoreNotificationData(
-                                        ParseUser.getCurrentUser(),
-                                        currentChore,
-                                        group,
-                                        context.getString(R.string.complete_chore_icon_url));
-                                Notification notification = new Notification("Chores",
-                                        data,
-                                        "ic_bell_white_24dp",
-                                        "https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-bell-512.png",
-                                        "[]",
-                                        true,
-                                        group);
-                                OneSignalNotificationSender.sendDeviceNotification(notification);
-
+                                if(checked)
+                                    createNotification(currentChore);
                             }
                         });
 
@@ -155,6 +149,22 @@ public class ChoresAdapter extends RecyclerView.Adapter<ChoresAdapter.ViewHolder
             allUsers.clear(); // makes it slower but ensures no duplicates
             allUsers.addAll(userIcons);
             adapter.notifyDataSetChanged();
+        }
+
+        private void createNotification(Chore currentChore) {
+            String[] data = Notification.getCompleteChoreNotificationData(
+                    ParseUser.getCurrentUser(),
+                    currentChore,
+                    group,
+                    context.getString(R.string.complete_chore_icon_url));
+            Notification notification = new Notification("Chores",
+                    data,
+                    "ic_bell_white_24dp",
+                    "[]",
+                    true,
+                    group);
+            OneSignalNotificationSender.sendDeviceNotification(notification);
+
         }
 
     }

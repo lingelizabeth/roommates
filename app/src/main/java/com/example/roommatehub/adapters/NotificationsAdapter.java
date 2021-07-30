@@ -11,8 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.roommatehub.Helper;
 import com.example.roommatehub.R;
 import com.example.roommatehub.models.Notification;
+import com.parse.Parse;
+import com.parse.ParseUser;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -61,10 +64,24 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
         }
         public void bind(Notification notification){
             tvTitle.setText(notification.getTitle());
-            tvMessage.setText(notification.getMessage());
+            tvTimeAgo.setText(Helper.getRelativeTimeAgo(notification.getCreatedAt()));
+
+            // for chore creation: message contains a list of all the users this is assigned to, customize for each user
+            if(notification.getGroup().equals("Create chore")){
+                String notifMessage = notification.getMessage();
+                String message;
+                if(notifMessage.contains(ParseUser.getCurrentUser().getUsername())){
+                    message = "You are assigned this on"+notifMessage.substring(notifMessage.lastIndexOf(" "));
+                } else{
+                    message = "You are not assigned anything";
+                }
+                tvMessage.setText(message);
+            }else{
+                tvMessage.setText(notification.getMessage());
+            }
 
             Glide.with(context)
-                    .load(notification.getIconUrl())
+                    .load(notification.getLargeIconUrl())
                     .circleCrop()
                     .into(ivIcon);
         }

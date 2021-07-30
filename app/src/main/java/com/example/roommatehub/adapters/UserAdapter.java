@@ -106,18 +106,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             // Get last known location relative time ago
             Date locationUpdatedTime = (Date) user.get(KEY_TIME_AGO);
             if(locationUpdatedTime != null){
-                tvTimeAgo.setText(getRelativeTimeAgo(locationUpdatedTime));
+                tvTimeAgo.setText(Helper.getRelativeTimeAgo(locationUpdatedTime));
             }
 
-        }
-
-        public String getRelativeTimeAgo(Date date) {
-            String relativeDate = "";
-            long dateMillis = date.getTime();
-            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
-                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
-
-            return relativeDate;
         }
     }
 }

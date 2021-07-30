@@ -9,11 +9,14 @@ import com.example.roommatehub.models.NotificationData;
 import com.onesignal.OSDeviceState;
 import com.onesignal.OneSignal;
 import com.parse.ParseException;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.List;
 
 public class OneSignalNotificationSender {
 
@@ -28,8 +31,23 @@ public class OneSignalNotificationSender {
             if (!isSubscribed)
                 return;
 
+            // TODO: Get player IDs and check if subscribed for all members of group
+//            notification.saveParseGroup();
+//            String external_id_string = "";
+//            try{
+//                List<ParseUser> groupMembers = notification.getParseGroup().getMemberList();
+//                for(ParseUser member:groupMembers){
+//                    external_id_string += "'"+member.getObjectId()+"', ";
+//                }
+//                external_id_string = external_id_string.substring(0, external_id_string.length()-2);
+//                Log.i(TAG, "getting all object IDs for this group: "+external_id_string);
+//
+//            }catch(ParseException e){
+//                Log.e(TAG, "Error getting group members"+e);
+//            }
+
             try {
-                JSONObject notificationContent = new JSONObject("{'include_player_ids': ['" + userId + "']," +
+                JSONObject notificationContent = new JSONObject("{'include_player_ids': [" + userId + "]," +
                         "'headings': {'en': '" + notification.getTitle() + "'}," +
                         "'contents': {'en': '" + notification.getMessage() + "'}," +
                         "'small_icon': '" + notification.getSmallIconRes() + "'," +
