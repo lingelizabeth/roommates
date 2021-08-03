@@ -47,7 +47,7 @@ public class OneSignalNotificationSender {
 //            }
 
             try {
-                JSONObject notificationContent = new JSONObject("{'include_player_ids': [" + userId + "]," +
+                JSONObject notificationContent = new JSONObject("{'include_player_ids': ['" + userId + "']," +
                         "'headings': {'en': '" + notification.getTitle() + "'}," +
                         "'contents': {'en': '" + notification.getMessage() + "'}," +
                         "'small_icon': '" + notification.getSmallIconRes() + "'," +

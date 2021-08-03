@@ -54,7 +54,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     private TextView tvDay, tvProgress;
     private FloatingActionButton btnAdd;
     private SwipeRefreshLayout swipeContainer;
-    ProgressBar progressBar;
+    ProgressBar progressBar, pb;
     private double progress; // double between 1 and 100
     LottieAnimationView lottieAnimationView;
 
@@ -118,6 +118,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
         rvChores.setAdapter(adapter);
         rvChores.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // Set a indeterminate progress icon while users and chores load
+        pb = (ProgressBar) view.findViewById(R.id.pbLoading);
+        pb.setVisibility(View.VISIBLE);
         queryChores(null, day);
 
         // Lookup the swipe container view
@@ -216,6 +219,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
                 Log.i(TAG, "Successfully fetched chores for "+day);
                 allChores.addAll(chores);
                 adapter.notifyDataSetChanged();
+
+                // Remove loading icon once loaded
+                pb.setVisibility(View.INVISIBLE);
             }
         });
     }

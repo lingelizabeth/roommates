@@ -1,6 +1,7 @@
 package com.example.roommatehub.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.roommatehub.Helper;
 import com.example.roommatehub.R;
+import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.Notification;
 import com.parse.Parse;
 import com.parse.ParseUser;
 
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdapter.ViewHolder>{
@@ -52,7 +60,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvTitle, tvMessage, tvTimeAgo;
-        ImageView ivIcon;
+        ImageView ivIcon, ivNew;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -61,9 +69,12 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             tvMessage = itemView.findViewById(R.id.tvMessage);
             tvTimeAgo = itemView.findViewById(R.id.tvTimeAgo);
             ivIcon = itemView.findViewById(R.id.ivIcon);
+            ivNew = itemView.findViewById(R.id.ivNew);
         }
         public void bind(Notification notification){
-            tvTitle.setText(notification.getTitle());
+            // Customize title text to "You" if the notification was created by the current user
+            String title = notification.getTitle().replace(ParseUser.getCurrentUser().getUsername(), "You");
+            tvTitle.setText(title);
             tvTimeAgo.setText(Helper.getRelativeTimeAgo(notification.getCreatedAt()));
 
             // for chore creation: message contains a list of all the users this is assigned to, customize for each user
@@ -84,6 +95,24 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                     .load(notification.getLargeIconUrl())
                     .circleCrop()
                     .into(ivIcon);
+
+            // If this notification is created after the current user's last view time, show new icon
+            try {
+                Group group = notification.getParseGroup().fetchIfNeeded();
+                JSONObject memberActivity = group.getActivityJSON();
+                String dateString = (String) memberActivity.get(ParseUser.getCurrentUser().getObjectId());
+                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date notifDate = notification.getCreatedAt();
+                Log.i("NotificationsAdapter", "HomeFragment comparing dates: "+dateFormat.parse(dateString)+" "+notifDate+" "+notifDate.compareTo(dateFormat.parse(dateString)));
+                if(notifDate.compareTo(dateFormat.parse(dateString)) > 0){
+                    // if notification is created after user's last view
+                    ivNew.setVisibility(View.VISIBLE);
+                    Log.i("NotificationsAdapter", "HomeFragment "+notification.getTitle()+" is NEW");
+                }
+            } catch (JSONException | ParseException | com.parse.ParseException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

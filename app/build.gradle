@@ -53,4 +53,5 @@ dependencies {
     implementation 'com.onesignal:OneSignal:[4.0.0, 4.99.99]' // OneSignal notifications API
     implementation 'com.google.android.gms:play-services-location:18.0.0' // Google play location SDK
     implementation "com.airbnb.android:lottie:4.0.0" // Lottie for animations
+    implementation 'com.google.android.libraries.places:places:2.4.0' // Places SDK for Android
 }
