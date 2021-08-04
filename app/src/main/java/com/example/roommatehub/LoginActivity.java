@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.onesignal.OneSignal;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -32,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         etUsername = findViewById(R.id.etDescription);
         etPassword = findViewById(R.id.etMembers);
-        btnLogin = findViewById(R.id.btnSubmit);
+        btnLogin = findViewById(R.id.btnGoToLogin);
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(username, password);
             }
         });
-        btnCreateAccount = findViewById(R.id.btnGoToLogin);
+        btnCreateAccount = findViewById(R.id.btnGoToRegister);
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

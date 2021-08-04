@@ -1,5 +1,6 @@
 package com.example.roommatehub;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,6 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.roommatehub.models.Group;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.model.AddressComponents;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -21,6 +28,7 @@ import com.parse.SaveCallback;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CreateActivity extends AppCompatActivity {
@@ -30,8 +38,10 @@ public class CreateActivity extends AppCompatActivity {
     EditText etTitle, etDescription, etMembers;
     Button btnAdd, btnSubmit;
     TextView tvMembers;
+    AutocompleteSupportFragment autocompleteSupportFragment;
 
     List<ParseUser> newMembers;
+    String address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +88,36 @@ public class CreateActivity extends AppCompatActivity {
                 });
             }
         });
-        btnSubmit = findViewById(R.id.btnSubmit);
+
+        // Places autocomplete
+        // Initialize the AutocompleteSupportFragment.
+        autocompleteSupportFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return and type of locations to filter
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.ADDRESS_COMPONENTS, Place.Field.ADDRESS, Place.Field.LAT_LNG));
+        autocompleteSupportFragment.setTypeFilter(TypeFilter.ADDRESS);
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+                // TODO: Get info about the selected place.
+                AddressComponents addressComponents = place.getAddressComponents();
+                Log.i(TAG, "Place: " + place.getAddress() + ", " + place.getId());
+                // Save place ID into database for this group
+                address = place.getAddress();
+            }
+
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Log.i(TAG, "An error occurred: " + status);
+            }
+        });
+
+        btnSubmit = findViewById(R.id.btnGoToLogin);
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +140,7 @@ public class CreateActivity extends AppCompatActivity {
                 group.setTitle(title);
                 group.setDescription(description);
                 group.addMembers(newMembers);
+                group.setAddress(address);
                 group.saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {

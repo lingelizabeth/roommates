@@ -7,11 +7,15 @@ import com.example.roommatehub.models.ListItem;
 import com.example.roommatehub.models.Note;
 import com.example.roommatehub.models.Notification;
 import com.example.roommatehub.models.NotificationData;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.onesignal.OneSignal;
 import com.parse.Parse;
 import com.parse.ParseObject;
 
 import android.app.Application;
+
+import java.util.Properties;
 
 public class ParseApplication extends Application{
 
@@ -28,6 +32,14 @@ public class ParseApplication extends Application{
         // OneSignal Initialization
         OneSignal.initWithContext(this);
         OneSignal.setAppId(ONESIGNAL_APP_ID);
+
+        // Google Places API initialization
+        // Initialize the SDK
+        String places_api_key = BuildConfig.PLACES_API_KEY;
+        Places.initialize(getApplicationContext(), places_api_key);
+
+        // Create a new PlacesClient instance
+        PlacesClient placesClient = Places.createClient(this);
 
         // Parse Initialization
         ParseObject.registerSubclass(Group.class);

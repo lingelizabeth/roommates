@@ -22,6 +22,7 @@ public class Group extends ParseObject {
     public static final String KEY_TITLE = "Title";
     public static final String KEY_MEMBERS = "groupMembers";
     public static final String KEY_ACTIVITY = "memberActivity";
+    public static final String KEY_ADDRESS = "placeId";
 
     public String getDescription() {
         return getString(KEY_DESCRIPTION);
@@ -69,6 +70,14 @@ public class Group extends ParseObject {
         Log.i("Group", activity.toString());
         put(KEY_ACTIVITY, activity.toString());
 
+    }
+
+    public String getAddress() {
+        return getString(KEY_ADDRESS);
+    }
+
+    public void setAddress(String placeId){
+        put(KEY_ADDRESS, placeId);
     }
 
 }

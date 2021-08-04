@@ -35,11 +35,6 @@ public class GroupProfileFragment extends Fragment {
 
     public static final String TAG = "GroupProfileFragment";
 
-    private LocationRequest mLocationRequest;
-    private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
-    private long FASTEST_INTERVAL = 2000; /* 2 sec */
-
-
     private Group group;
     TextView tvName, tvDescription;
     RecyclerView rvUsers;
@@ -81,7 +76,7 @@ public class GroupProfileFragment extends Fragment {
         // Set up recyclerview
         rvUsers = view.findViewById(R.id.rvUsers);
         allUsers = new ArrayList<>();
-        adapter = new UserAdapter(getContext(), allUsers);
+        adapter = new UserAdapter(getContext(), allUsers, group.getAddress());
         rvUsers.setAdapter(adapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
         populateUsers(group);
@@ -109,37 +104,5 @@ public class GroupProfileFragment extends Fragment {
             }
         });
     }
-
-//    // Trigger new location updates at interval
-//    protected void startLocationUpdates() {
-//
-//        // Create the location request to start receiving updates
-//        mLocationRequest = new LocationRequest();
-//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        mLocationRequest.setInterval(UPDATE_INTERVAL);
-//        mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-//
-//        // Create LocationSettingsRequest object using location request
-//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder();
-//        builder.addLocationRequest(mLocationRequest);
-//        LocationSettingsRequest locationSettingsRequest = builder.build();
-//
-//        // Check whether location settings are satisfied
-//        // https://developers.google.com/android/reference/com/google/android/gms/location/SettingsClient
-//        SettingsClient settingsClient = LocationServices.getSettingsClient(getContext());
-//        settingsClient.checkLocationSettings(locationSettingsRequest);
-//
-//        checkPermissions();
-//        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-//            fusedLocationClient.requestLocationUpdates(mLocationRequest, new LocationCallback() {
-//                        @Override
-//                        public void onLocationResult(LocationResult locationResult) {
-//                            // do work here
-//                            onLocationChanged(locationResult.getLastLocation());
-//                        }
-//                    },
-//                    Looper.myLooper());
-//        }
-//    }
 
 }

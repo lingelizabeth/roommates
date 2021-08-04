@@ -4,43 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".SplashActivity"
+    android:background="@color/tan_background">
 
-    <EditText
-        android:id="@+id/etMembers"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/etDescription"
-        android:layout_centerHorizontal="true"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
         android:layout_marginTop="20dp"
-        android:hint="Password"
-        android:inputType="textPassword"
-        android:padding="10dp"
-        android:textSize="16dp"></EditText>
-
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:hint="Username"
-        android:padding="10dp"
-        android:shadowColor="#000000"
-        android:shadowDx="-1"
-        android:shadowDy="1"
-        android:textSize="16dp"></EditText>
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/home_animation_color" />
 
     <Button
         android:id="@+id/btnGoToLogin"
-        android:layout_width="300dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etMembers"
+        android:layout_below="@id/textView"
         android:layout_centerInParent="true"
-        android:layout_marginTop="20dp"
-        android:text="Log In"
-        android:backgroundTint="@color/bright_green"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@color/near_black"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Sign In"
         android:textAllCaps="false"></Button>
 
     <TextView
@@ -48,11 +33,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="250dp"
+        android:fontFamily="@font/libre_franklin_extrabold"
         android:text="Roommate Hub"
-        android:textColor="@color/black"
-        android:textSize="30sp"
+        android:textColor="@color/near_black"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
     <TextView
@@ -60,9 +45,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToLogin"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="26dp"
-        android:text="Don't have an account?" />
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Don't have an account?"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnGoToRegister"
@@ -70,14 +57,16 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToLogin"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/textView2"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/quicksand_medium"
         android:minHeight="10dp"
         android:padding="0dp"
         android:text="Create account"
         android:textAllCaps="false"
-        android:textColor="@color/bright_green" />
+        android:textColor="@color/calm_blue"
+        android:textSize="12sp" />
 
 </RelativeLayout>

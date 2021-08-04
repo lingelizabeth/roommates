@@ -36,10 +36,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private Context context;
     private List<ParseUser> users;
+    private String address;
 
-    public UserAdapter(Context context, List<ParseUser> users) {
+    public UserAdapter(Context context, List<ParseUser> users, String address) {
         this.context = context;
         this.users = users;
+        this.address = address;
     }
 
     @NonNull
@@ -90,14 +92,19 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 try{
                     List<Address> addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                     if (addresses.size() > 0) {
-                        Log.i(TAG, addresses.get(0).getCountryName()+addresses.get(0).getCountryCode());
-                        String stateAbbrev = "";
-                        if(addresses.get(0).getCountryName().equalsIgnoreCase("United States")) {
-                            Log.i(TAG, addresses.get(0).getAdminArea());
-                            Helper helper = new Helper();
-                            stateAbbrev += ", " + helper.states.get(addresses.get(0).getAdminArea());
+                        // Check if address is home address
+                        Log.i(TAG, addresses.get(0).getAddressLine(0)+" "+address);
+                        if(addresses.get(0).getAddressLine(0).equalsIgnoreCase(address)){
+                            tvLocation.setText("Last seen at home");
+                        }else{
+                            String stateAbbrev = "";
+                            if(addresses.get(0).getCountryName().equalsIgnoreCase("United States")) {
+                                Log.i(TAG, addresses.get(0).getAdminArea());
+                                Helper helper = new Helper();
+                                stateAbbrev += ", " + helper.states.get(addresses.get(0).getAdminArea());
+                            }
+                            tvLocation.setText("Last seen in "+addresses.get(0).getLocality()+stateAbbrev);
                         }
-                        tvLocation.setText("Last seen in "+addresses.get(0).getLocality()+stateAbbrev);
                     }
                 } catch(IOException e){
                     Log.e(TAG, "Error getting city/state data: "+e);

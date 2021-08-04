@@ -28,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.etDescription);
         etPassword = findViewById(R.id.etMembers);
         etEmail = findViewById(R.id.etEmail);
-        btnRegister = findViewById(R.id.btnSubmit);
+        btnRegister = findViewById(R.id.btnGoToLogin);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btnGoToLogin = findViewById(R.id.btnGoToLogin);
+        btnGoToLogin = findViewById(R.id.btnGoToRegister);
         btnGoToLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
