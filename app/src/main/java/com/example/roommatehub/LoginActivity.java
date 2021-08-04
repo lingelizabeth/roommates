@@ -47,12 +47,6 @@ public class LoginActivity extends AppCompatActivity {
                 goRegisterActivity();
             }
         });
-
-        // If already logged in, show the main activity
-        // Allows sign-in to persist across app restart
-        if(ParseUser.getCurrentUser() != null){
-            goMainActivity();
-        }
     }
 
     // loginUser uses Parse built in method

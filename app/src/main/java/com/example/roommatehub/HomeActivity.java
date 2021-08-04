@@ -58,5 +58,9 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
-
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in,R.anim.slide_out);
+    }
 }

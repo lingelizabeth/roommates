@@ -11,11 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.roommatehub.adapters.GroupsAdapter;
@@ -25,6 +29,7 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
@@ -45,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
 
     private FusedLocationProviderClient fusedLocationClient;
 
-    Button btnLogout, btnCreateGroup;
+    TextView tvHello;
+    Button btnLogout;
+    FloatingActionButton btnCreateGroup;
     RecyclerView rvGroups;
     GroupsAdapter adapter;
     List<Group> allGroups;
@@ -58,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
         // Update this user's last known location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
+
+        tvHello = findViewById(R.id.tvHello);
+        tvHello.setText("Hello, "+Helper.toTitleCase((String) ParseUser.getCurrentUser().get("firstName"))+"!");
 
         btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, CreateActivity.class);
                 startActivityForResult(i, REQUEST_CODE);
+                overridePendingTransition(R.anim.slide_up,R.anim.slide_down);
             }
         });
 

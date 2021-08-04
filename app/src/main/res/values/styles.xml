@@ -10,6 +10,32 @@
         <item name="fontFamily">@font/quicksand_bold</item>
         <item name="android:textSize">28dp</item>
     </style>
+    <style name="LibreFranklinBoldHeading">
+        <item name="android:textColor">@color/near_black</item>
+        <item name="fontFamily">@font/libre_franklin_bold</item>
+        <item name="android:textSize">36dp</item>
+    </style>
+    <style name="LibreFranklinSemiboldHeading">
+        <item name="android:textColor">@color/near_black</item>
+        <item name="fontFamily">@font/libre_franklin_semibold</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+    <style name="QuicksandRegularSubHeading">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/quicksand_regular</item>
+        <item name="android:textSize">16dp</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+    <style name="QuicksandMediumSubHeading">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">18dp</item>
+    </style>
+    <style name="ButtonText">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/quicksand_medium</item>
+        <item name="android:textSize">16dp</item>
+    </style>
     <style name="Heading2">
         <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/quicksand_semibold</item>

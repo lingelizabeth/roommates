@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <!-- Load the toolbar here -->
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <!-- Rest of content for the activity -->
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateActivity">
 
     <EditText
-        android:id="@+id/etTitle"
+        android:id="@+id/etName"
+        style="@style/BodyText"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_below="@id/textView11"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:hint="Group name"
         android:padding="10dp"
         android:shadowColor="#000000"
@@ -21,9 +37,10 @@
 
     <EditText
         android:id="@+id/etDescription"
+        style="@style/BodyText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/etTitle"
+        android:layout_below="@+id/etName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:hint="A short description"
@@ -42,30 +59,32 @@
         android:layout_centerHorizontal="false"
         android:layout_marginStart="56dp"
         android:layout_marginTop="6dp"
-        android:hint="(their username)"
+        android:hint="Type a username here..."
         android:padding="10dp"
         android:textSize="16dp"></EditText>
 
     <Button
         android:id="@+id/btnGoToLogin"
-        android:layout_width="300dp"
+        style="@style/ButtonText"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/autocomplete_fragment"
+        android:layout_below="@+id/tvMembers"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="38dp"
-        android:backgroundTint="@color/bright_green"
+        android:layout_marginTop="70dp"
+        android:backgroundTint="@color/near_black"
         android:text="Create group"
         android:textAllCaps="false"></Button>
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/QuicksandMediumSubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etDescription"
+        android:layout_below="@+id/autocomplete_fragment"
         android:layout_alignParentStart="true"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="50dp"
-        android:text="Add group members" />
+        android:layout_marginTop="30dp"
+        android:text="Add Roommates" />
 
     <Button
         android:id="@+id/btnAdd"
@@ -89,24 +108,39 @@
         android:layout_marginTop="10dp"
         tools:text="lizzy, rachel, emily" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvMembers"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="20dp"
-        android:text="What's your address?" />
-
     <fragment
         android:id="@+id/autocomplete_fragment"
         android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/textView9"
+        android:layout_below="@+id/textView9"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="40dp"
+        android:background="@color/caption_text"
+        android:hint="Address" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="56dp" />
+        android:layout_marginTop="30dp"
+        android:text="Basic Info" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDescription"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="20dp"
+        android:text="What's your address?" />
 
 </RelativeLayout>
+    </LinearLayout>

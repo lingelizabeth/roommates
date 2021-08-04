@@ -2,6 +2,7 @@ package com.example.roommatehub;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,7 +37,7 @@ public class CreateActivity extends AppCompatActivity {
     public static final String TAG = "CreateActivity";
 
     EditText etTitle, etDescription, etMembers;
-    Button btnAdd, btnSubmit;
+    Button btnAdd, btnSubmit, btnBack;
     TextView tvMembers;
     AutocompleteSupportFragment autocompleteSupportFragment;
 
@@ -48,9 +49,24 @@ public class CreateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
 
+        // Set Toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // Sets the Toolbar to act as the ActionBar for this Activity window.
+        // Make sure the toolbar exists in the activity and is not null
+        setSupportActionBar(toolbar);
+        TextView tvTitle = toolbar.findViewById(R.id.toolbar_title);
+        tvTitle.setText("Create a new group");
+        btnBack = toolbar.findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         newMembers = new ArrayList<>();
 
-        etTitle = findViewById(R.id.etTitle);
+        etTitle = findViewById(R.id.etName);
         etDescription = findViewById(R.id.etDescription);
         etMembers = findViewById(R.id.etMembers);
         tvMembers = findViewById(R.id.tvMembers);
@@ -177,6 +193,11 @@ public class CreateActivity extends AppCompatActivity {
             if (parseUser.hasSameId(user)) return true;
         }
         return false;
+    }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_up, R.anim.slide_down);
     }
 }

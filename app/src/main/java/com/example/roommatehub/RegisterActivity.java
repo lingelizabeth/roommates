@@ -17,7 +17,7 @@ import com.parse.SignUpCallback;
 public class RegisterActivity extends AppCompatActivity {
 
     public static final String TAG = "RegisterActivity";
-    private EditText etUsername, etPassword, etEmail;
+    private EditText etName, etUsername, etPassword, etEmail;
     private Button btnRegister, btnGoToLogin;
 
     @Override
@@ -25,6 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        etName = findViewById(R.id.etName);
         etUsername = findViewById(R.id.etDescription);
         etPassword = findViewById(R.id.etMembers);
         etEmail = findViewById(R.id.etEmail);
@@ -35,18 +36,26 @@ public class RegisterActivity extends AppCompatActivity {
                 // Create the ParseUser
                 ParseUser user = new ParseUser();
                 // Error handling
+                String fullName = etName.getText().toString();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 String email = etEmail.getText().toString();
-                if(username.equals("") || password.equals("") || email.equals("")){
+                if(username.equals("") || password.equals("") || email.equals("") || fullName.equals("")){
                     Toast.makeText(RegisterActivity.this, "Fields cannot be empty", Toast.LENGTH_LONG).show();
                     return;
                 }else if(!email.endsWith("@gmail.com")){
                     Toast.makeText(RegisterActivity.this, "Must be a gmail!", Toast.LENGTH_LONG).show();
                     return;
+                }else if(fullName.indexOf(" ") == -1){
+                    Toast.makeText(RegisterActivity.this, "Enter your first and last name separated by a space", Toast.LENGTH_LONG).show();
+                    return;
                 }
+                String firstName = fullName.substring(0, fullName.indexOf(" "));
+                String lastName = fullName.substring(fullName.indexOf(" ")+1);
 
                 // Set core properties
+                user.put("firstName", firstName);
+                user.put("lastName", lastName);
                 user.setUsername(username);
                 user.setPassword(password);
                 user.setEmail(email);

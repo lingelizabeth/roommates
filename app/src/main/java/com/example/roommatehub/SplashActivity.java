@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.parse.ParseUser;
+
 public class SplashActivity extends AppCompatActivity {
 
     Button btnGoToLogin, btnGoToRegister;
@@ -30,6 +32,12 @@ public class SplashActivity extends AppCompatActivity {
                 goRegisterActivity();
             }
         });
+
+        // If already logged in, show the main activity
+        // Allows sign-in to persist across app restart
+        if(ParseUser.getCurrentUser() != null){
+            goMainActivity();
+        }
     }
 
     // Intent to Login Activity
@@ -42,6 +50,13 @@ public class SplashActivity extends AppCompatActivity {
     // Intent to Register Activity
     private void goRegisterActivity() {
         Intent i = new Intent(this, RegisterActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    // Intent to Main Activity
+    private void goMainActivity() {
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }

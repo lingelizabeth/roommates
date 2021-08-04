@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@color/tan_background">
 
     <EditText
         android:id="@+id/etMembers"
+        style="@style/BodyText"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/etDescription"
@@ -20,11 +22,12 @@
 
     <EditText
         android:id="@+id/etDescription"
+        style="@style/BodyText"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textView10"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="75dp"
         android:hint="Username"
         android:padding="10dp"
         android:shadowColor="#000000"
@@ -34,35 +37,36 @@
 
     <Button
         android:id="@+id/btnGoToLogin"
-        android:layout_width="300dp"
+        style="@style/ButtonText"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etMembers"
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
+        android:backgroundTint="@color/near_black"
         android:text="Log In"
-        android:backgroundTint="@color/bright_green"
         android:textAllCaps="false"></Button>
 
     <TextView
         android:id="@+id/textView"
+        style="@style/LibreFranklinBoldHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="165dp"
-        android:layout_marginTop="50dp"
-        android:text="Roommate Hub"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="150dp"
+        android:text="Login" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToLogin"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="26dp"
-        android:text="Don't have an account?" />
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/quicksand_medium"
+        android:text="Don't have an account?"
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/btnGoToRegister"
@@ -70,14 +74,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnGoToLogin"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/textView2"
         android:background="@android:color/transparent"
         android:backgroundTint="@android:color/transparent"
+        android:fontFamily="@font/quicksand_medium"
         android:minHeight="10dp"
         android:padding="0dp"
         android:text="Create account"
         android:textAllCaps="false"
-        android:textColor="@color/bright_green" />
+        android:textColor="@color/calm_blue"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        style="@style/QuicksandRegularSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="7dp"
+        android:text="Welcome back! Sign in to continue." />
 
 </RelativeLayout>

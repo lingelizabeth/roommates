@@ -4,13 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tan_background"
+    android:padding="15dp"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
+        android:layout_width="28dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/logout"
+        app:backgroundTint="@color/black"
         tools:layout_editor_absoluteX="32dp"
         tools:layout_editor_absoluteY="37dp" />
 
@@ -18,16 +24,44 @@
         android:id="@+id/rvGroups"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/tv12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="86dp" />
 
-    <Button
+    <TextView
+        android:id="@+id/tvHello"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        tools:text="Hello, Lizzy!" />
+
+    <TextView
+        android:id="@+id/tv12"
+        style="@style/LibreFranklinBoldHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvHello"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp"
+        android:text="My Groups" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/btnCreateGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:text="Create New Group" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/purple_500"
+        android:src="@drawable/ic_baseline_add_white"
+        app:tint="@color/white" />
 
 </RelativeLayout>

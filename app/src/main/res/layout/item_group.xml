@@ -4,22 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp">
+    android:layout_margin="5dp"
+    android:background="@drawable/tan_rounded_rectangle"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/ivGroup"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="centerCrop"
         tools:layout_editor_absoluteX="26dp"
         tools:layout_editor_absoluteY="26dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTitle"
+        style="@style/LibreFranklinSemiboldHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
         android:layout_toEndOf="@+id/ivGroup"
         android:text="TextView"
         android:textSize="20sp"
@@ -28,13 +33,39 @@
 
     <TextView
         android:id="@+id/tvDescription"
+        style="@style/QuicksandRegularSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvMembers"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="30dp"
+        android:layout_toEndOf="@+id/ivGroup"
+        android:alpha="1"
+        android:text="TextView"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tvMembers"
+        style="@style/QuicksandRegularSubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tvTitle"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
         android:layout_toEndOf="@+id/ivGroup"
         android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/ivGroup"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="0dp"
+        app:srcCompat="@drawable/ic_baseline_navigate_next_24" />
 </RelativeLayout>
