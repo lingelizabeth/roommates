@@ -27,12 +27,15 @@ import com.example.roommatehub.HomeActivity;
 import com.example.roommatehub.OneSignalNotificationSender;
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.NotificationsAdapter;
+import com.example.roommatehub.adapters.UserIconAdapter;
 import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.Notification;
+import com.example.roommatehub.models.UserIcon;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseRelation;
 import com.parse.ParseUser;
 
 import org.jetbrains.annotations.NotNull;
@@ -55,9 +58,12 @@ public class HomeFragment extends Fragment {
 
     TextView tvTitle;
     RelativeLayout choreWidget;
-    RecyclerView rvNotifications;
+    Button btnGoToGroupProfile;
+    RecyclerView rvNotifications, rvMembers;
     List<Notification> allNotifications;
     NotificationsAdapter adapter;
+    List<UserIcon> allMembers;
+    UserIconAdapter userIconAdapter;
 
     ProgressBar progressBar, pb;
     TextView tvProgress;
@@ -99,20 +105,26 @@ public class HomeFragment extends Fragment {
         tvTitle = view.findViewById(R.id.tvTitle);
         tvTitle.setText("Welcome to "+title+"!");
 
+        // Group Members section and recyclerview
+        btnGoToGroupProfile = view.findViewById(R.id.btnGoToGroupProfile);
+        btnGoToGroupProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goGroupProfile(v, group);
+            }
+        });
+        rvMembers = view.findViewById(R.id.rvMembers);
+        allMembers = new ArrayList<>();
+        userIconAdapter = new UserIconAdapter(getContext(), allMembers);
+        rvMembers.setAdapter(userIconAdapter);
+        rvMembers.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
         // Chore Widget
         choreWidget = view.findViewById(R.id.choreWidget);
         choreWidget.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Go to chores fragment
-                AppCompatActivity activity = (AppCompatActivity) view.getContext();
-                Fragment myFragment = ChoresFragment.newInstance(group);
-                activity.getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.flContainer, myFragment)
-                        .addToBackStack(null)
-                        .commit();
-                BottomNavigationView bottomNavigationView = (BottomNavigationView) activity.findViewById(R.id.bottom_navigation);
-                bottomNavigationView.setSelectedItemId(R.id.action_chores);
+                goChoresFragment(v, group);
             }
         });
         Calendar calendar = Calendar.getInstance();
@@ -143,6 +155,7 @@ public class HomeFragment extends Fragment {
         // Show indeterminate loading icon while fetching notifications
         pb = view.findViewById(R.id.pbLoading);
         pb.setVisibility(View.VISIBLE);
+        populateUsers(group);
         populateNotifs(group);
     }
 
@@ -191,5 +204,57 @@ public class HomeFragment extends Fragment {
                 }, 5000);
             }
         });
+    }
+
+    private void populateUsers(Group group) {
+        ParseRelation relation = group.getRelation("groupMembers");
+        ParseQuery query = relation.getQuery();
+        query.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> users, ParseException e) {
+                if(e!=null){
+                    Log.e(TAG, "Error fetching users in group: "+e);
+                    return;
+                }
+                Log.i(TAG, "Successfully fetched "+users.size()+" group members");
+
+                List<UserIcon> userIcons = null;
+                try {
+                    int type = 3; // Custom ViewHolder for Member Activity
+                    userIcons = UserIcon.fromUserArray(users, type);
+                } catch (ParseException parseException) {
+                    parseException.printStackTrace();
+                }
+
+                // Add the group members to the adapter
+                allMembers.addAll(userIcons);
+                userIconAdapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+    public void goGroupProfile(View v, Group group){
+        // Go to Group Profile fragment
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        Fragment myFragment = GroupProfileFragment.newInstance(group);
+        activity.getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContainer, myFragment)
+                .addToBackStack(null)
+                .commit();
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) activity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_group);
+
+    }
+    public void goChoresFragment(View v, Group group){
+        // Go to chores fragment
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
+        Fragment myFragment = ChoresFragment.newInstance(group);
+        activity.getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flContainer, myFragment)
+                .addToBackStack(null)
+                .commit();
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) activity.findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.action_chores);
+
     }
 }

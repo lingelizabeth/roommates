@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.roommatehub.Helper;
 import com.example.roommatehub.R;
 import com.example.roommatehub.models.Group;
@@ -93,7 +94,7 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
 
             Glide.with(context)
                     .load(notification.getLargeIconUrl())
-                    .circleCrop()
+                    .transform(new RoundedCorners(10))
                     .into(ivIcon);
 
             // If this notification is created after the current user's last view time, show new icon

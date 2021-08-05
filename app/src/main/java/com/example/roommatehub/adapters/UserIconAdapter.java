@@ -2,6 +2,7 @@ package com.example.roommatehub.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.roommatehub.R;
 import com.example.roommatehub.interfaces.itemFilterSelectedListener;
 import com.example.roommatehub.models.UserIcon;
+import com.example.roommatehub.viewholders.ActivityUserViewHolder;
 import com.example.roommatehub.viewholders.AssignUserViewHolder;
 import com.example.roommatehub.viewholders.BaseViewHolder;
 import com.example.roommatehub.viewholders.FilterByUserViewHolder;
@@ -33,6 +35,7 @@ public class UserIconAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     private static final int TYPE_SMALL = 0;
     private static final int TYPE_FILTER = 1;
     private static final int TYPE_ASSIGN = 2;
+    private static final int TYPE_ACTIVITY = 3;
 
     public UserIconAdapter(Context context, List<UserIcon> userIcons) {
         this.context = context;
@@ -62,6 +65,10 @@ public class UserIconAdapter extends RecyclerView.Adapter<BaseViewHolder> {
                 View view = LayoutInflater.from(context).inflate(R.layout.item_profile_image, parent, false);
                 return new AssignUserViewHolder(view, context, userIcons);
             }
+            case TYPE_ACTIVITY: {
+                View view = LayoutInflater.from(context).inflate(R.layout.item_profile_image, parent, false);
+                return new ActivityUserViewHolder(view, context);
+            }
             default:
                 throw new IllegalArgumentException("Invalid view type");
         }
@@ -80,10 +87,13 @@ public class UserIconAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     @Override
     public int getItemViewType(int position) {
+        if(position == RecyclerView.NO_POSITION){
+            Log.e("UserIconAdapter", "Tried to get item view type of invalid position");
+            return -1;
+        }
         UserIcon element = userIcons.get(position);
         return element.ITEM_TYPE;
 
-//        throw new IllegalArgumentException("Invalid position " + position);
     }
 
     public void clear() {

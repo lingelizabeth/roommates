@@ -125,7 +125,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
                                 }
 
                                 // Create notification for edit
-                                if(noteChanged){
+                                if(refreshNote()){
                                     createNotification();
                                 }
                             }

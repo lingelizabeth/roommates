@@ -84,7 +84,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.ViewHolder
                     new CenterCrop(),
                     new RoundedCorners(25));
             Glide.with(context)
-                    .load(R.drawable.atlas)
+                    .load(R.drawable.gradient)
                     .transform(multiLeft)
                     .into(ivGroup);
         }

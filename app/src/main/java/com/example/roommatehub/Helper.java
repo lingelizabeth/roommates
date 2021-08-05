@@ -9,6 +9,8 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -101,6 +103,59 @@ public class Helper {
 
         return relativeDate;
     }
+
+    // Function to parse Twitter date into abbreviated relative time, ie. "2h"
+    // From https://stackoverflow.com/questions/19409035/custom-format-for-relative-time-span
+    public static String getAbbrevTimeAgo(Date date) throws java.text.ParseException {
+
+        StringBuffer dateStr = new StringBuffer();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        Calendar now = Calendar.getInstance();
+
+        int days = daysBetween(calendar.getTime(), now.getTime());
+        int minutes = hoursBetween(calendar.getTime(), now.getTime());
+        int hours = minutes / 60;
+        if (days == 0) {
+
+            int second = minuteBetween(calendar.getTime(), now.getTime());
+            if (minutes > 60) {
+
+                if (hours >= 1 && hours <= 24) {
+                    dateStr.append(hours).append("h");
+                }
+
+            } else {
+
+                if (second <= 60) {
+                    dateStr.append(second).append("s");
+                } else if (second >= 60 && minutes <= 60) {
+                    dateStr.append(minutes).append("m");
+                }
+            }
+        } else
+
+        if (hours > 24) {
+            dateStr.append(days).append("d");
+        }
+
+        return dateStr.toString();
+    }
+
+    // Helper functions
+    public static int minuteBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / DateUtils.SECOND_IN_MILLIS);
+    }
+
+    public static int hoursBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / DateUtils.MINUTE_IN_MILLIS);
+    }
+
+    public static int daysBetween(Date d1, Date d2) {
+        return (int) ((d2.getTime() - d1.getTime()) / DateUtils.DAY_IN_MILLIS);
+    }
+
 
     public static int getProgressOnDay(String day, Group group){
         ParseQuery query = ParseQuery.getQuery(Chore.class);

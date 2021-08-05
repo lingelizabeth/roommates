@@ -11,8 +11,41 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/white"
+        android:background="@android:color/transparent"
         android:padding="3dp"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvTimeAgo"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/ivIcon"
+        android:layout_marginStart="-30dp"
+        android:layout_marginTop="-20dp"
+        android:layout_toEndOf="@+id/ivIcon"
+        android:background="@drawable/calm_blue_circle"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        android:visibility="gone"
+        tools:text="15m"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvFirstName"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivIcon"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="5dp"
+        android:fontFamily="@font/quicksand_regular"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="10sp"
+        android:visibility="gone"
+        tools:text="Lizzy"
+        tools:visibility="visible" />
 
 </RelativeLayout>

@@ -6,7 +6,6 @@ import com.example.roommatehub.models.Group;
 import com.example.roommatehub.models.ListItem;
 import com.example.roommatehub.models.Note;
 import com.example.roommatehub.models.Notification;
-import com.example.roommatehub.models.NotificationData;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.onesignal.OneSignal;
@@ -14,8 +13,6 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 
 import android.app.Application;
-
-import java.util.Properties;
 
 public class ParseApplication extends Application{
 

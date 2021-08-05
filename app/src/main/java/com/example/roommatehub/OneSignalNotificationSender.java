@@ -1,22 +1,16 @@
 package com.example.roommatehub;
 
-import android.nfc.Tag;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.roommatehub.models.Notification;
-import com.example.roommatehub.models.NotificationData;
 import com.onesignal.OSDeviceState;
 import com.onesignal.OneSignal;
 import com.parse.ParseException;
-import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.List;
 
 public class OneSignalNotificationSender {
 

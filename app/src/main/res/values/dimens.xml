@@ -2,5 +2,6 @@
 <resources>
     <dimen name="popup_width">300dp</dimen>
     <dimen name="popup_height">500dp</dimen>
+    <dimen name="corner_radius">7dp</dimen>
     <dimen name="design_navigation_icon_size" override="true">40dp</dimen>
 </resources>

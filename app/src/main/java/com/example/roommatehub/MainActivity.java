@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logOut();
         ParseUser currentUser = ParseUser.getCurrentUser(); // set current user to null
 
-        Intent i = new Intent(MainActivity.this, LoginActivity.class);
+        Intent i = new Intent(MainActivity.this, SplashActivity.class);
         startActivity(i);
     }
 
