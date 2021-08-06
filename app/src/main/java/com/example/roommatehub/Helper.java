@@ -2,6 +2,7 @@ package com.example.roommatehub;
 
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.roommatehub.models.Chore;
 import com.example.roommatehub.models.Group;
@@ -9,11 +10,13 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Helper {
@@ -106,7 +109,7 @@ public class Helper {
 
     // Function to parse Twitter date into abbreviated relative time, ie. "2h"
     // From https://stackoverflow.com/questions/19409035/custom-format-for-relative-time-span
-    public static String getAbbrevTimeAgo(Date date) throws java.text.ParseException {
+    public static String getAbbrevTimeAgo(Date date) {
 
         StringBuffer dateStr = new StringBuffer();
 
@@ -178,6 +181,35 @@ public class Helper {
             e.printStackTrace();
         }
         return -1;
+    }
+
+    // Fetches current week of the year eg 8/1-8/7
+    // From https://stackoverflow.com/questions/7742618/dates-of-start-and-end-of-current-week-in-android/45237817
+    public static String getCurrentWeekString(){
+        // get Current Week of the year
+        Calendar calendar=Calendar.getInstance();
+        Log.v("Current Week", String.valueOf(calendar.get(Calendar.WEEK_OF_YEAR)));
+        int current_week=calendar.get(Calendar.WEEK_OF_YEAR);
+        int week_start_day=calendar.getFirstDayOfWeek(); // this will get the starting day os week in integer format i-e 1 if monday
+        Log.i(TAG, "Current Week is"+current_week +"Start Day is"+week_start_day);
+
+        // get the starting and ending date
+        // Set the calendar to sunday of the current week
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        System.out.println("Current week = " + Calendar.DAY_OF_WEEK);
+
+        // Print dates of the current week starting on Sunday
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        DateFormat df = new SimpleDateFormat("M/d", Locale.getDefault());
+        String startDate = "", endDate = "";
+
+        startDate = df.format(calendar.getTime());
+        calendar.add(Calendar.DATE, 6);
+        endDate = df.format(calendar.getTime());
+
+        Log.i(TAG, "Start Date = " + startDate);
+        Log.i(TAG, "End Date = " + endDate);
+        return startDate+"-"+endDate;
     }
 
     // Copied from https://stackoverflow.com/questions/1086123/is-there-a-method-for-string-conversion-to-title-case

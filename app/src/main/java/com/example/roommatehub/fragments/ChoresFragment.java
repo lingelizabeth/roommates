@@ -10,7 +10,9 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.roommatehub.Helper;
 import com.example.roommatehub.MainActivity;
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.ChorePagerAdapter;
@@ -48,6 +50,10 @@ public class ChoresFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Week textview
+        TextView tvWeek = view.findViewById(R.id.tvWeek);
+        tvWeek.setText(Helper.getCurrentWeekString());
 
         // get arguments
         group = Parcels.unwrap(getArguments().getParcelable("group"));

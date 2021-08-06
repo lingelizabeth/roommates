@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tan_background"
     android:clickable="true"
     android:focusableInTouchMode="true"
     tools:context=".fragments.NotesDetailFragment">
@@ -21,7 +22,7 @@
 
     <EditText
         android:id="@+id/etListTitle"
-        style="@style/listHeading"
+        style="@style/LibreFranklinSemiboldHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -66,7 +67,7 @@
 
             <EditText
                 android:id="@+id/etNewItem"
-                style="@style/CaptionText"
+                style="@style/QuicksandRegularSubHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rvListItems"
@@ -111,7 +112,6 @@
         </RelativeLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
 
 
 </RelativeLayout>

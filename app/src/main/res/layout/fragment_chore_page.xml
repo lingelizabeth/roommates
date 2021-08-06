@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:paddingStart="15dp"
+    android:paddingEnd="15dp">
 
     <TextView
         android:id="@+id/tv1"
-        style="@style/Heading2"
+        style="@style/QuicksandMediumSubHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/choreWidget"
         android:layout_centerHorizontal="false"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="10dp"
-        android:text="Filter by user" />
+        android:text="Filter by user"
+        android:textSize="16dp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/tv1"
+        android:layout_below="@id/tvNumChores"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginBottom="70dp">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -31,25 +35,69 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="@color/purple_500"
-        android:src="@drawable/ic_baseline_add_white"
-        android:tint="@color/white" />
+    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--        android:id="@+id/btnAdd"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentEnd="true"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_marginEnd="30dp"-->
+    <!--        android:layout_marginBottom="30dp"-->
+    <!--        android:backgroundTint="@color/purple_500"-->
+    <!--        android:src="@drawable/ic_baseline_add_white"-->
+    <!--        android:tint="@color/white" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUsers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"
-        android:layout_toEndOf="@+id/tv1" />
+        android:layout_below="@id/tv1"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="5dp" />
+
+    <RelativeLayout
+        android:id="@+id/choreWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/outline_rounded_rectangle"
+        android:elevation="4dp"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/Heading2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:text="Today's Chore Progress:"
+            android:textSize="16dp"></TextView>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="250dp"
+            android:layout_height="20dp"
+            android:layout_below="@+id/tv1"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:progressDrawable="@drawable/custom_progress_bar" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            style="@style/BodyText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="1dp"
+            android:layout_toEndOf="@+id/tv1"
+            android:background="#00000000"
+            android:gravity="center"
+            tools:text="75%"></TextView>
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -59,7 +107,8 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="45dp"
-        android:progress="0" />
+        android:progress="0"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvProgress"
@@ -69,15 +118,16 @@
         android:layout_marginStart="15dp"
         android:layout_marginBottom="45dp"
         android:layout_toEndOf="@+id/progressBar"
+        android:visibility="gone"
         tools:text="80%" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:lottie_rawRes="@raw/animation"
         app:lottie_autoPlay="false"
-        app:lottie_loop="false" />
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/animation" />
 
     <ProgressBar
         android:id="@+id/pbLoading"
@@ -86,5 +136,28 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
         android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/tvNumChores"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rvUsers"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:text="2 Chores Today" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="9dp"
+        android:elevation="4dp"
+        android:text="+ Create new chore"
+        android:textAllCaps="false" />
 
 </RelativeLayout>

@@ -20,8 +20,8 @@ public class SmallUserIconViewHolder extends BaseViewHolder<UserIcon> {
         ivProfileImage = itemView.findViewById(R.id.ivIcon);
         ivProfileImage.requestLayout();
         // Set smaller image view
-        ivProfileImage.getLayoutParams().height = 90;
-        ivProfileImage.getLayoutParams().width = 90;
+        ivProfileImage.getLayoutParams().height = 80;
+        ivProfileImage.getLayoutParams().width = 80;
         // Decrease margins between images
         ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) ivProfileImage.getLayoutParams();
         marginParams.setMargins(0, 0, 30, 0);

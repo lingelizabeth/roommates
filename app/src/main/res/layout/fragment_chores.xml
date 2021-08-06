@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:backgroundTint="@color/tan_background"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/textView4"
-        style="@style/TabHeading"
-        android:layout_width="match_parent"
+        style="@style/QuicksandMediumSubHeading"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:text="Chores"
-        android:textStyle="bold" />
+        android:layout_marginTop="12dp"
+        android:text="Chores Week of"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/ButtonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:backgroundTint="@color/near_black"
+        android:text="Clear weekly progress"
+        android:textAllCaps="false"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/tvWeek"
+        style="@style/LibreFranklinBoldHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView4"
+        android:layout_marginTop="2dp"
+        android:textStyle="bold"
+        tools:text="8/1-8/7" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/sliding_tabs"
         style="@style/AppTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tvWeek"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:layout_marginEnd="14dp"
         app:tabMode="scrollable"
         app:tabTextAppearance="@style/AppTabTextAppearance" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sliding_tabs"
         android:layout_weight="1"
-        android:background="@android:color/white" />
+        android:background="@color/tan_background" />
 
-</LinearLayout>
+</RelativeLayout>

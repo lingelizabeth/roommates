@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/tan_background"
     tools:context=".fragments.NotesFragment">
 
 
@@ -21,30 +22,35 @@
         android:layout_below="@+id/textView6"
         android:layout_marginTop="15dp" />
 
+    <!--    <Button-->
+    <!--        android:id="@+id/btnCreate"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@id/rvNotes"-->
+    <!--        android:layout_marginStart="0dp"-->
+    <!--        android:background="@android:color/transparent"-->
+    <!--        android:drawableLeft="@drawable/ic_baseline_add_24"-->
+    <!--        android:paddingLeft="10dp"-->
+    <!--        android:text="Create new list"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        android:textColor="@color/black" />-->
+
     <Button
         android:id="@+id/btnCreate"
+        style="@style/ButtonText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rvNotes"
-        android:layout_marginStart="0dp"
-        android:background="@android:color/transparent"
-        android:drawableLeft="@drawable/ic_baseline_add_24"
-        android:paddingLeft="10dp"
-        android:text="Create new list"
-        android:textAllCaps="false"
-        android:textColor="@color/black" />
-
-    <View
-        android:id="@+id/line4"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/btnCreate"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
-        android:background="@android:color/darker_gray" />
+        android:layout_marginBottom="20dp"
+        android:elevation="4dp"
+        android:text="+ Create new list"
+        android:textAllCaps="false" />
 
     <TextView
         android:id="@+id/textView6"
-        style="@style/TabHeading"
+        style="@style/LibreFranklinSemiboldHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"

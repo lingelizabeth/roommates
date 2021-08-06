@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.roommatehub.Helper;
 import com.example.roommatehub.MainActivity;
 import com.example.roommatehub.fragments.NotesDetailFragment;
 import com.example.roommatehub.fragments.NotesFragment;
@@ -22,6 +23,7 @@ import com.example.roommatehub.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
@@ -55,7 +57,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        TextView tvTitle, tvFirstItem, tvSecondItem;
+        TextView tvTitle, tvFirstItem, tvSecondItem, tvUpdatedTime;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -63,21 +65,24 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder>{
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvFirstItem = itemView.findViewById(R.id.tvFirstItem);
             tvSecondItem = itemView.findViewById(R.id.tvSecondItem);
+            tvUpdatedTime = itemView.findViewById(R.id.tvUpdatedTime);
 
             itemView.setOnClickListener(this);
         }
 
         public void bind(Note note){
             tvTitle.setText(note.getTitle());
+            tvUpdatedTime.setText(Helper.getAbbrevTimeAgo(note.getUpdatedAt()));
+
 
             // Check if length of items list >= 2, if it is, populate the first two textviews
             if(note.getItemList().size() >= 1){
                 ListItem firstItem = (ListItem) note.getItemList().get(0);
-                tvFirstItem.setText(firstItem.getText());
+                tvFirstItem.setText("• "+firstItem.getText());
             }
             if(note.getItemList().size() >= 2){
                 ListItem secondItem = (ListItem) note.getItemList().get(1);
-                tvSecondItem.setText(secondItem.getText());
+                tvSecondItem.setText("• "+secondItem.getText());
             }
         }
 

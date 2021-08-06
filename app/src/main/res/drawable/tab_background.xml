@@ -10,6 +10,6 @@
                 android:topRightRadius="7dp"/>
         </shape>
     </item>
-    <item android:drawable="@color/white">
+    <item android:state_selected="false" android:drawable="@drawable/tan_rounded_rectangle">
     </item>
 </selector>

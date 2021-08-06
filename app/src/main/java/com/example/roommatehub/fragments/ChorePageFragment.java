@@ -51,8 +51,8 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     private Group group;
     private String day;
     private RecyclerView rvChores, rvUsers;
-    private TextView tvDay, tvProgress;
-    private FloatingActionButton btnAdd;
+    private TextView tvDay, tvProgress, tvNumChores;
+    private Button btnAdd;
     private SwipeRefreshLayout swipeContainer;
     ProgressBar progressBar, pb;
     private double progress; // double between 1 and 100
@@ -95,6 +95,9 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        // Set up dates and textview
+        tvNumChores = view.findViewById(R.id.tvNumChores);
 
         // Recycler view setup for filter by userIcons
         rvUsers = view.findViewById(R.id.rvUsers);
@@ -222,6 +225,7 @@ public class ChorePageFragment extends Fragment implements DialogInterface.OnDis
 
                 // Remove loading icon once loaded
                 pb.setVisibility(View.INVISIBLE);
+                tvNumChores.setText(allChores.size()+" Chores Today");
             }
         });
     }

@@ -60,7 +60,7 @@ public class FilterByUserViewHolder extends BaseViewHolder<UserIcon> implements 
             userIcon.setSelected(!userIcon.isSelected());
             ivProfileImage.setBackground(userIcon.isSelected() ?
                     context.getDrawable(R.drawable.blue_circle) :
-                    context.getDrawable(R.drawable.white));
+                    context.getDrawable(R.drawable.ic_baseline_navigate_next_24));
             listener.onitemFilterSelected(UserIcon.getSelectedUsers(userIcons));
         }
     }

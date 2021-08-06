@@ -50,12 +50,8 @@ public class ActivityUserViewHolder extends BaseViewHolder<UserIcon> {
         // Get last known location relative time ago
         Date locationUpdatedTime = (Date) userIcon.getUser().get(KEY_TIME_AGO);
         if(locationUpdatedTime != null){
-            try {
-                tvTimeAgo.setVisibility(View.VISIBLE);
-                tvTimeAgo.setText(Helper.getAbbrevTimeAgo(locationUpdatedTime));
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            tvTimeAgo.setVisibility(View.VISIBLE);
+            tvTimeAgo.setText(Helper.getAbbrevTimeAgo(locationUpdatedTime));
         }
         // Name
         tvFirstName.setVisibility(View.VISIBLE);
