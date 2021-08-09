@@ -60,4 +60,12 @@ public class SplashActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+    // Close application on back press
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+        finish();
+    }
+
 }

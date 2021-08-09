@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    app:itemIconTint="@color/bottom_nav_color"
+    app:itemTextColor="@android:color/transparent">
     <item
         android:id="@+id/action_home"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_home_24"
+        android:icon="@drawable/home_nav"
         android:title="Home"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_chores"
         android:enabled="true"
-        android:icon="@drawable/broom"
+        android:icon="@drawable/chores_nav"
         android:title="Chores"
         app:showAsAction="always" />
     <item
         android:id="@+id/action_notes"
         android:enabled="true"
-        android:icon="@drawable/ic_notes"
+        android:icon="@drawable/notes_nav"
         android:title="Notes"
         app:showAsAction="always" />
 
@@ -29,7 +32,7 @@
     <item
         android:id="@+id/action_group"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_group_24"
+        android:icon="@drawable/profile_nav"
         android:title="Group"
         app:showAsAction="always" />
 </menu>

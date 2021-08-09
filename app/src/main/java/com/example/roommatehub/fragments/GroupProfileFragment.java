@@ -12,8 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.roommatehub.R;
 import com.example.roommatehub.adapters.UserAdapter;
 import com.example.roommatehub.models.Group;
@@ -34,9 +39,11 @@ import java.util.List;
 public class GroupProfileFragment extends Fragment {
 
     public static final String TAG = "GroupProfileFragment";
+    public static final String gradient_image_url="https://t3.ftcdn.net/jpg/02/42/77/22/360_F_242772256_PRwokoyoXkDCIISNjfj9N3If0TPFtje8.jpg";
 
     private Group group;
-    TextView tvName, tvDescription;
+    ImageView ivGroupImage;
+    TextView tvName, tvDescription, tvAddress;
     RecyclerView rvUsers;
     List<ParseUser> allUsers;
     UserAdapter adapter;
@@ -70,8 +77,18 @@ public class GroupProfileFragment extends Fragment {
         // Initialize views
         tvName = view.findViewById(R.id.tvTitle);
         tvDescription = view.findViewById(R.id.tvDescription);
+        tvAddress = view.findViewById(R.id.tvAddress);
         tvName.setText(group.getTitle());
         tvDescription.setText(group.getDescription());
+        tvAddress.setText(group.getAddress());
+        ivGroupImage = view.findViewById(R.id.ivGroupImage);
+        MultiTransformation multiLeft = new MultiTransformation(
+                new CenterCrop(),
+                new RoundedCorners(25));
+        Glide.with(getContext())
+                .load(gradient_image_url)
+                .transform(multiLeft)
+                .into(ivGroupImage);
 
         // Set up recyclerview
         rvUsers = view.findViewById(R.id.rvUsers);

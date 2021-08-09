@@ -62,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // if not signed in, go to login
+        Log.i(TAG, "current user: "+ParseUser.getCurrentUser());
+        if(ParseUser.getCurrentUser() == null){
+            goSplashActivity();
+        }
+
         // Update this user's last known location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
@@ -211,6 +217,13 @@ public class MainActivity extends AppCompatActivity {
         ActivityCompat.requestPermissions(this,
                 new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                 REQUEST_FINE_LOCATION);
+    }
+
+    // Intent to Splash Activity
+    private void goSplashActivity() {
+        Intent i = new Intent(this, SplashActivity.class);
+        startActivity(i);
+        finish();
     }
 
 }

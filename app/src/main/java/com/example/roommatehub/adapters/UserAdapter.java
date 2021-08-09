@@ -78,7 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         }
 
         public void bind(ParseUser user){
-            tvName.setText(user.getUsername());
+            tvName.setText(user.get("firstName")+" "+user.get("lastName"));
             Glide.with(context)
                     .load(user.getParseFile(KEY_IMAGE).getUrl())
                     .circleCrop()
