@@ -103,12 +103,16 @@
 
             <Button
                 android:id="@+id/btnSave"
+                style="@style/ButtonText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/line2"
-                android:layout_marginTop="28dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
                 android:text="Save New List"
-                android:visibility="gone" />
+                android:textAllCaps="false"
+                android:visibility="gone"
+                tools:visibility="visible" />
         </RelativeLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

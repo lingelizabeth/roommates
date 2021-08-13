@@ -45,7 +45,7 @@ public class CameraActivity extends AppCompatActivity {
         btnAddAgain = findViewById(R.id.btnAddAgain);
 
         tv1 = findViewById(R.id.tv1);
-        tv2 = findViewById(R.id.tv2);
+        tv2 = findViewById(R.id.tv1);
         ivIcon = findViewById(R.id.ivIcon);
         ivProfileImage = findViewById(R.id.ivIcon);
 

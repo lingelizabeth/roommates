@@ -104,4 +104,13 @@
         android:fontFamily="@font/quicksand_bold"
         android:text="About" />
 
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/rvUsers"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:visibility="invisible" />
+
 </RelativeLayout>

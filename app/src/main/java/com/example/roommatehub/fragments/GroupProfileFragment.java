@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -47,6 +48,7 @@ public class GroupProfileFragment extends Fragment {
     RecyclerView rvUsers;
     List<ParseUser> allUsers;
     UserAdapter adapter;
+    ProgressBar pbLoading;
 
     public GroupProfileFragment() {
         // Required empty public constructor
@@ -96,6 +98,10 @@ public class GroupProfileFragment extends Fragment {
         adapter = new UserAdapter(getContext(), allUsers, group.getAddress());
         rvUsers.setAdapter(adapter);
         rvUsers.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Set a indeterminate progress icon while users and chores load
+        pbLoading = view.findViewById(R.id.pbLoading);
+        pbLoading.setVisibility(View.VISIBLE);
         populateUsers(group);
     }
 
@@ -118,6 +124,9 @@ public class GroupProfileFragment extends Fragment {
                 // Add the group members to the adapter
                 allUsers.addAll(users);
                 adapter.notifyDataSetChanged();
+
+                // Remove loading icon once loaded
+                pbLoading.setVisibility(View.INVISIBLE);
             }
         });
     }

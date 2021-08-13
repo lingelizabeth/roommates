@@ -62,18 +62,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // if not signed in, go to login
-        Log.i(TAG, "current user: "+ParseUser.getCurrentUser());
-        if(ParseUser.getCurrentUser() == null){
-            goSplashActivity();
-        }
-
         // Update this user's last known location
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLastLocation();
 
+        Log.i(TAG, "current user: "+ParseUser.getCurrentUser());
         tvHello = findViewById(R.id.tvHello);
-        tvHello.setText("Hello, "+Helper.toTitleCase((String) ParseUser.getCurrentUser().get("firstName"))+"!");
+        if(ParseUser.getCurrentUser() != null){
+            tvHello.setText("Hello, "+Helper.toTitleCase((String) ParseUser.getCurrentUser().get("firstName"))+"!");
+        }
 
         btnLogout = findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         ParseUser.logOut();
         ParseUser currentUser = ParseUser.getCurrentUser(); // set current user to null
 
-        Intent i = new Intent(MainActivity.this, SplashActivity.class);
+        Intent i = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(i);
     }
 

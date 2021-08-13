@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/choreWidget"
+        android:layout_alignParentTop="false"
         android:layout_centerHorizontal="false"
         android:layout_marginStart="0dp"
         android:layout_marginTop="10dp"
@@ -35,17 +36,6 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-    <!--        android:id="@+id/btnAdd"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentEnd="true"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:layout_marginEnd="30dp"-->
-    <!--        android:layout_marginBottom="30dp"-->
-    <!--        android:backgroundTint="@color/purple_500"-->
-    <!--        android:src="@drawable/ic_baseline_add_white"-->
-    <!--        android:tint="@color/white" />-->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvUsers"
@@ -68,7 +58,7 @@
         android:padding="15dp">
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/tv2"
             style="@style/Heading2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,7 +71,7 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="250dp"
             android:layout_height="20dp"
-            android:layout_below="@+id/tv1"
+            android:layout_below="@+id/tv2"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
             android:progressDrawable="@drawable/custom_progress_bar" />
@@ -93,33 +83,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="1dp"
-            android:layout_toEndOf="@+id/tv1"
+            android:layout_toEndOf="@+id/tv2"
             android:background="#00000000"
             android:gravity="center"
             tools:text="75%"></TextView>
     </RelativeLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="45dp"
-        android:progress="0"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/tvProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="45dp"
-        android:layout_toEndOf="@+id/progressBar"
-        android:visibility="gone"
-        tools:text="80%" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animationView"
@@ -133,8 +101,9 @@
         android:id="@+id/pbLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvNumChores"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="20dp"
         android:visibility="invisible" />
 
     <TextView
